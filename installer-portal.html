@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sungrow Installer Portal NZ (mock-up)</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--ink:#1a2330;--muted:#5d6876;--faint:#8a95a3;--line:#e4e8ed;--bg:#f4f6f8;--card:#fff;--brand:#FF7900;--brand-ink:#9a4300;--brand-soft:#fff1e3;--navy:#0f1b2b;--navy2:#16263b;--ok:#1d7f55;--ok-soft:#e6f4ec;--warn:#9a5b00;--warn-soft:#fff4dc;--info:#2456a6;--info-soft:#e8effb;--bad:#b3261e;--bad-soft:#fbe9e7}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+.mock{background:#0a121e;color:#cfd8e3;font-size:12.5px;padding:6px 16px;text-align:center}
+.mock b{color:#ffb36b}
+.mock a{color:#ffb36b}
+.top{position:sticky;top:0;z-index:20;height:60px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:16px;padding:0 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.brandmark{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:236px}
+.brandmark .div{width:1px;height:22px;background:rgba(255,255,255,.2)}
+.brandmark span{font-size:13px;font-weight:600;letter-spacing:.04em;color:#dbe3ec;white-space:nowrap}
+.brandmark span em{font-style:normal;color:#ffb36b;font-weight:700}
+.search{flex:1;max-width:520px;position:relative}
+.search input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 12px 9px 36px;color:#fff;outline:none}
+.search input::placeholder{color:#93a1b2}
+.search input:focus{border-color:var(--brand);background:rgba(255,255,255,.12)}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.6}
+.tright{margin-left:auto;display:flex;align-items:center;gap:14px}
+.bell{position:relative;background:none;border:0;cursor:pointer;padding:6px;color:#dbe3ec}
+.bell b{position:absolute;top:0;right:0;background:var(--brand);color:#fff;font-size:10.5px;border-radius:999px;min-width:17px;height:17px;display:grid;place-items:center;padding:0 4px}
+.me{display:flex;align-items:center;gap:10px;font-size:13px;color:#dbe3ec}
+.av{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px}
+.me small{display:block;color:#93a1b2;font-size:11.5px}
+.shell{display:grid;grid-template-columns:236px 1fr;min-height:calc(100vh - 92px);background:linear-gradient(90deg,var(--navy2) 236px,var(--bg) 236px)}
+.side{background:var(--navy2);color:#c3cdd9;padding:18px 12px;position:sticky;top:60px;height:calc(100vh - 60px);overflow:auto}
+.side h6{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#7f8ea1;margin:18px 10px 6px;font-weight:700}
+.side h6:first-child{margin-top:0}
+.side a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;text-decoration:none;font-size:14px;margin-bottom:2px}
+.side a:hover{background:rgba(255,255,255,.06);color:#fff}
+.side a.on{background:rgba(255,121,0,.14);color:#fff;box-shadow:inset 3px 0 0 var(--brand)}
+.side a svg{flex:none;opacity:.85}
+.side a .n{margin-left:auto;background:var(--brand);color:#fff;border-radius:999px;font-size:11px;padding:0 7px;line-height:18px}
+.side .help{margin:22px 6px 0;padding:14px;border-radius:12px;background:rgba(255,255,255,.05);font-size:13px}
+.side .help b{color:#fff;display:block;margin-bottom:4px}
+main{padding:26px 30px 60px;min-width:0}
+.view{display:none;max-width:1240px}
+.view.on{display:block}
+.ph{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.ph h1{font-size:26px;margin:0;letter-spacing:-.01em}
+.ph p{margin:4px 0 0;color:var(--muted)}
+.crumb{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink);font-weight:700;margin-bottom:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.card h2{font-size:16px;margin:0 0 4px}
+.card .sub{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.cols{display:grid;gap:18px}
+.cols>*{min-width:0}
+.c2{grid-template-columns:1.4fr 1fr}
+.mapgrid{grid-template-columns:1fr 300px}
+.c2e{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.mt{margin-top:18px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:2px 9px;background:#eef1f4;color:var(--muted);white-space:nowrap}
+.tag.sample{background:var(--warn-soft);color:var(--warn)}
+.tag.brand{background:var(--brand-soft);color:var(--brand-ink)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.info{background:var(--info-soft);color:var(--info)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:9px;background:var(--brand);color:#fff;font-weight:700;padding:9px 16px;cursor:pointer;text-decoration:none;font-size:14px}
+.btn:hover{filter:brightness(.95)}
+.btn.sec{background:#fff;color:var(--ink);border:1px solid #cdd4dc;font-weight:600}
+.btn.sm{padding:6px 11px;font-size:13px}
+.welcome{position:relative;border-radius:16px;overflow:hidden;color:#fff;min-height:200px;display:flex;align-items:center;background:#0f1b2b}
+.welcome img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 35%}
+.welcome:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,18,30,.94) 0%,rgba(10,18,30,.82) 42%,rgba(10,18,30,.1) 78%)}
+.welcome .in{position:relative;z-index:2;padding:28px 30px;max-width:560px}
+.welcome h1{margin:0 0 6px;font-size:28px}
+.welcome p{margin:0 0 18px;color:#d7dee7}
+.welcome .btn.sec{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)}
+.kpi .lbl{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;align-items:center}
+.kpi .val{font-size:34px;font-weight:750;letter-spacing:-.02em;line-height:1.1;margin:8px 0 2px}
+.kpi .val small{font-size:15px;font-weight:600;color:var(--muted)}
+.kpi .foot{font-size:12.5px;color:var(--muted)}
+.bars{display:flex;align-items:flex-end;gap:10px;height:170px;padding:8px 0 0;border-bottom:1px solid var(--line)}
+.bars .b{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative}
+.bars .b i{display:block;width:100%;max-width:38px;background:var(--brand);border-radius:5px 5px 0 0;min-height:2px}
+.bars .b span{font-size:12px;color:var(--muted);margin-bottom:4px}
+.bars .b:hover i{filter:brightness(.9)}
+.axis{display:flex;gap:10px;margin-top:6px}
+.axis span{flex:1;text-align:center;font-size:11.5px;color:var(--faint)}
+[data-tip]{position:relative}
+[data-tip]:hover:after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:12px;padding:5px 8px;border-radius:6px;white-space:nowrap;z-index:5;pointer-events:none}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+.list li:first-child{border-top:0;padding-top:4px}
+.list .ico{width:36px;height:36px;border-radius:9px;background:var(--brand-soft);color:var(--brand-ink);display:grid;place-items:center;flex:none}
+.list b{display:block;font-size:14px}
+.list span{font-size:13px;color:var(--muted)}
+.list .r{margin-left:auto;text-align:right;flex:none}
+.prog{height:8px;background:#edf0f3;border-radius:999px;overflow:hidden;margin-top:8px}
+.prog i{display:block;height:100%;background:var(--brand);border-radius:999px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:10px 12px;border-bottom:1px solid var(--line);background:#fafbfc;white-space:nowrap}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:hover td{background:#fcfcfd}
+.tbl .mono{font:13px ui-monospace,Menlo,monospace;color:var(--muted);white-space:nowrap}
+.tbl td{white-space:nowrap}
+.tbl td:nth-child(4),.tbl td:nth-child(5){white-space:normal}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff}
+.scroll .tbl{min-width:760px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid #cdd4dc;background:#fff;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--brand-soft);border-color:var(--brand);color:var(--brand-ink);font-weight:700}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.toolbar input[type=search],.toolbar select{border:1px solid #cdd4dc;border-radius:9px;padding:9px 12px;background:#fff;min-width:0}
+.toolbar input[type=search]{flex:1;min-width:220px}
+.mapf{width:100%;height:640px;border:1px solid var(--line);border-radius:14px;background:#fff;display:block}
+.comms{display:grid;grid-template-columns:380px 1fr;gap:18px;align-items:start}
+.nlist{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.nitem{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:14px 16px;cursor:pointer}
+.nitem:last-child{border-bottom:0}
+.nitem:hover{background:#fcfcfd}
+.nitem.on{background:var(--brand-soft);box-shadow:inset 3px 0 0 var(--brand)}
+.nitem b{display:block;font-size:14.5px;margin:4px 0 2px}
+.nitem span{font-size:12.5px;color:var(--muted)}
+.nitem.unread b:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--brand);margin-right:7px;vertical-align:1px}
+.ndetail h2{font-size:21px;margin:8px 0 4px}
+.ndetail .meta{font-size:13px;color:var(--muted);margin-bottom:14px}
+.ndetail img{border-radius:12px;margin:6px 0 14px;width:100%;aspect-ratio:16/9;object-fit:cover}
+.ndetail p{margin:0 0 12px}
+.note{background:var(--warn-soft);border:1px dashed #e0b25c;color:var(--warn);border-radius:9px;padding:10px 12px;font-size:13.5px}
+.form label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
+.form input,.form select,.form textarea{width:100%;border:1px solid #cdd4dc;border-radius:9px;padding:9px 11px;background:#fff}
+.form textarea{min-height:96px;resize:vertical}
+.docs{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.doc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.doc .hd{display:flex;gap:12px;align-items:flex-start}
+.doc .ft{width:40px;height:48px;border-radius:6px;background:var(--brand-soft);color:var(--brand-ink);font-size:10.5px;font-weight:800;display:grid;place-items:center;flex:none;letter-spacing:.04em}
+.doc .ft.vid{background:var(--info-soft);color:var(--info)}
+.doc .ft.cert{background:var(--ok-soft);color:var(--ok)}
+.doc b{font-size:14.5px;line-height:1.3}
+.doc .pm{font-size:12.5px;color:var(--muted)}
+.doc .act{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:6px}
+.vids{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vid{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer}
+.vid .th{position:relative}
+.vid .th img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.vid .th:after{content:"";position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(255,121,0,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='white'/%3E%3C/svg%3E") center/24px no-repeat}
+.vid .bd{padding:12px 14px}
+.vid b{font-size:14px;display:block}
+.vid span{font-size:12.5px;color:var(--muted)}
+.course{display:flex;flex-direction:column;gap:6px}
+.course .top2{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.course b{font-size:15.5px}
+.course p{margin:0;color:var(--muted);font-size:13.5px}
+.assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.asset{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.asset img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.asset .bd{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.asset b{font-size:13.5px;display:block}
+.asset span{font-size:12px;color:var(--muted)}
+.badge{display:grid;place-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.step i{font-style:normal;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:13px;margin-bottom:6px}
+.step b{display:block;font-size:14px}
+.step span{font-size:13px;color:var(--muted)}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:11px 18px;border-radius:10px;font-size:14px;opacity:0;transition:.25s;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media (max-width:1100px){.c4{grid-template-columns:repeat(2,1fr)}.vids{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+  .top{height:auto;flex-wrap:wrap;padding:10px 16px;gap:10px}
+  .brandmark{min-width:0}
+  .search{order:3;flex-basis:100%;max-width:none}
+  .me div{display:none}
+  .shell{display:block;background:var(--bg)}
+  .side{position:sticky;top:0;height:auto;padding:8px 10px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;z-index:15;border-bottom:1px solid rgba(255,255,255,.08)}
+  .side h6,.side .help{display:none}
+  .side a{margin:0;padding:8px 12px;font-size:13.5px}
+  .side a svg{display:none}
+  .side a.on{box-shadow:inset 0 -3px 0 var(--brand)}
+  main{padding:18px 16px 50px}
+  .c2,.c2e,.c3,.comms,.mapgrid{grid-template-columns:1fr}
+  .c4{grid-template-columns:1fr 1fr}
+  .vids{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .mapf{height:78vh}
+  .welcome:before{background:linear-gradient(0deg,rgba(10,18,30,.95) 0%,rgba(10,18,30,.8) 60%,rgba(10,18,30,.35) 100%)}
+  .welcome{min-height:260px;align-items:flex-end}
+  .welcome .in{padding:22px 18px}
+  .kpi .val{font-size:28px}
+}
+</style>
+</head>
+<body>
+<div class="mock"><b>Mock-up by Eko Media for discussion.</b> Installers, leads, notices, documents, training and numbers are samples. Product names and images come from sungrowpower.com. <a href="index.html">Back to the review</a></div>
+
+<header class="top">
+  <a class="brandmark" href="#overview"><img src="img/sg/sungrow-logo.png" alt="Sungrow" width="120" height="16" style="width:120px;height:auto"><i class="div"></i><span>Installer Portal <em>NZ</em></span></a>
+  <form class="search" id="gsearch" role="search">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+    <input id="gq" type="search" placeholder="Search manuals, guides, datasheets" aria-label="Search the library">
+  </form>
+  <div class="tright">
+    <button class="bell" aria-label="Notices" onclick="go('comms')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><b id="bellN">3</b></button>
+    <div class="me"><span class="av">SF</span><div>Sample Installer F<small>Tauranga · Certified (sample)</small></div></div>
+  </div>
+</header>
+
+<div class="shell">
+<nav class="side" id="side">
+  <h6>Portal</h6>
+  <a href="#overview" data-v="overview"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Overview</a>
+  <a href="#map" data-v="map"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 1114 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Network map</a>
+  <a href="#leads" data-v="leads"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>Leads<span class="n">6</span></a>
+  <a href="#comms" data-v="comms"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Communications<span class="n" id="sideN">3</span></a>
+  <h6>Resources</h6>
+  <a href="#library" data-v="library"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5z"/><path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5"/></svg>Library</a>
+  <a href="#training" data-v="training"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>Training</a>
+  <a href="#warranty" data-v="warranty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Warranty &amp; service</a>
+  <a href="#marketing" data-v="marketing"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Marketing assets</a>
+  <h6>For the discussion</h6>
+  <a href="nz-hub.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10H3z"/></svg>NZ hub mock-up</a>
+  <a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Search baselines</a>
+  <a href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>Back to the review</a>
+  <div class="help"><b>Sungrow NZ support</b>Phone and email placeholders until Sungrow confirms its NZ contacts.</div>
+</nav>
+
+<main>
+<!-- OVERVIEW -->
+<section class="view" id="v-overview">
+  <div class="welcome"><img src="img/sg/installers.jpg" alt=""><div class="in">
+    <div class="crumb" style="color:#ffb36b">Installer Portal · New Zealand</div>
+    <h1>Kia ora, Sample Installer F</h1>
+    <p>Your leads, notices, manuals and training in one place, from Sungrow New Zealand.</p>
+    <a class="btn" href="#leads">View new leads</a> <a class="btn sec" href="#library">Open the library</a>
+  </div></div>
+
+  <div class="cols c4 mt">
+    <div class="card kpi"><div class="lbl">New leads, last 7 days <span class="tag sample">Sample</span></div><div class="val">6</div><div class="foot">From Find an installer</div></div>
+    <div class="card kpi"><div class="lbl">Open warranty cases <span class="tag sample">Sample</span></div><div class="val">2</div><div class="foot">1 waiting on you</div></div>
+    <div class="card kpi"><div class="lbl">Unread notices <span class="tag sample">Sample</span></div><div class="val" id="kpiN">3</div><div class="foot">2 product, 1 technical</div></div>
+    <div class="card kpi"><div class="lbl">Certification renewal <span class="tag sample">Sample</span></div><div class="val">41 <small>days</small></div><div class="foot">Residential certification</div></div>
+  </div>
+
+  <div class="cols c2 mt">
+    <div class="card">
+      <h2>Leads from Find an installer</h2>
+      <p class="sub">Homeowners who picked you on the map, per week, last 8 weeks. <span class="tag sample">Sample data</span></p>
+      <div class="bars" id="leadBars"></div>
+      <div class="axis" id="leadAxis"></div>
+    </div>
+    <div class="card">
+      <h2>Latest notices</h2>
+      <p class="sub">From Sungrow New Zealand</p>
+      <ul class="list" id="ovNotices"></ul>
+      <a class="btn sec sm" href="#comms" style="margin-top:8px">All communications</a>
+    </div>
+  </div>
+
+  <div class="cols c2e mt">
+    <div class="card">
+      <h2>Popular in the library</h2>
+      <p class="sub">Most opened by installers this month <span class="tag sample">Sample</span></p>
+      <ul class="list" id="ovDocs"></ul>
+    </div>
+    <div class="card">
+      <h2>Your training</h2>
+      <p class="sub">Keep your certification current</p>
+      <div id="ovTraining"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="view" id="v-map">
+  <div class="ph"><div><div class="crumb">Network</div><h1>National installer map</h1><p>The same map homeowners use on the NZ hub. Every certified installer, by region and specialty.</p></div><span class="tag sample">Sample installers</span></div>
+  <div class="cols mapgrid">
+    <iframe class="mapf" id="mapf" data-src="installer-map.html?embed=1" title="Installer map"></iframe>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card"><h2>Your listing</h2><p class="sub">What homeowners see</p>
+        <div style="font-weight:700">Sample Installer F</div><div style="font-size:13.5px;color:var(--muted);margin-bottom:10px">Tauranga · Bay of Plenty</div>
+        <div class="chips" style="margin-bottom:12px"><span class="tag">Home battery</span><span class="tag">Hybrid inverter</span><span class="tag">Coastal install</span></div>
+        <button class="btn sec sm" onclick="toast('Demo only: listing edits are not saved.')">Edit listing</button></div>
+      <div class="card"><h2>Coverage gaps</h2><p class="sub">Towns more than 100 km from a certified installer</p>
+        <ul class="list"><li><div><b>Dunedin</b><span>Nearest installer is in Canterbury</span></div></li><li><div><b>Invercargill</b><span>Nearest installer is in Canterbury</span></div></li></ul>
+        <div class="note" style="margin-top:8px">Based on the sample installer list. The real gaps come from Sungrow's certified list.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADS -->
+<section class="view" id="v-leads">
+  <div class="ph"><div><div class="crumb">Leads</div><h1>Leads from homeowners</h1><p>Every enquiry from Find an installer and the NZ hub guides, routed to the nearest certified installer.</p></div><span class="tag sample">Sample leads</span></div>
+  <div class="toolbar"><div class="chips" id="leadChips"></div></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Ref</th><th>Received</th><th>Town</th><th>Interested in</th><th>Came from</th><th>Status</th><th></th></tr></thead><tbody id="leadRows"></tbody></table></div>
+  <p style="font-size:13px;color:var(--muted)">Homeowner names and contact details are hidden in this mock-up.</p>
+</section>
+
+<!-- COMMS -->
+<section class="view" id="v-comms">
+  <div class="ph"><div><div class="crumb">Communications</div><h1>Notices from Sungrow New Zealand</h1><p>Product news, technical bulletins, training dates and distributor updates for every certified installer.</p></div><span class="tag sample">Sample notices</span></div>
+  <div class="toolbar"><div class="chips" id="commChips"></div></div>
+  <div class="comms">
+    <div class="nlist" id="nlist"></div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div class="card ndetail" id="ndetail"></div>
+      <div class="card form"><h2>Message Sungrow NZ</h2><p class="sub">Goes to the right team in New Zealand.</p>
+        <label for="msub">Topic</label><select id="msub"><option>Technical support</option><option>Warranty</option><option>Training</option><option>Marketing and co-branding</option><option>Ordering (Rise Energy)</option></select>
+        <label for="mtxt">Message</label><textarea id="mtxt" placeholder="Type your message"></textarea>
+        <div style="margin-top:12px"><button class="btn" onclick="toast('Demo only: messages are not sent.')">Send</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIBRARY -->
+<section class="view" id="v-library">
+  <div class="ph"><div><div class="crumb">Library</div><h1>Manuals, guides and datasheets</h1><p>Installation guides, user manuals, datasheets, certificates and how-to videos for every Sungrow product sold in New Zealand.</p></div><span class="tag sample">Files to be supplied by Sungrow</span></div>
+  <div class="toolbar">
+    <input type="search" id="lq" placeholder="Search by product or document" aria-label="Search the library">
+    <select id="lprod" aria-label="Product"></select>
+    <select id="ltype" aria-label="Document type"></select>
+  </div>
+  <h2 style="font-size:17px;margin:6px 0 10px">How-to videos</h2>
+  <div class="vids" id="vids"></div>
+  <h2 style="font-size:17px;margin:26px 0 10px">Documents <span id="lcount" style="color:var(--muted);font-weight:500;font-size:14px"></span></h2>
+  <div class="docs" id="docs"></div>
+</section>
+
+<!-- TRAINING -->
+<section class="view" id="v-training">
+  <div class="ph"><div><div class="crumb">Training</div><h1>Training and certification</h1><p>Courses that keep you on the certified list, and the sessions coming up.</p></div><span class="tag sample">Sample courses</span></div>
+  <div class="cols c2e" id="courses"></div>
+  <div class="card mt"><h2>Upcoming sessions</h2><p class="sub">Dates and venues are placeholders until Sungrow sets its NZ training calendar.</p>
+    <div class="scroll" style="border:0"><table class="tbl"><thead><tr><th>Session</th><th>Where</th><th>When</th><th>Seats</th><th></th></tr></thead><tbody id="sessions"></tbody></table></div></div>
+</section>
+
+<!-- WARRANTY -->
+<section class="view" id="v-warranty">
+  <div class="ph"><div><div class="crumb">Warranty &amp; service</div><h1>Warranty and service</h1><p>Register systems, raise claims and track them with a New Zealand contact.</p></div><span class="tag sample">Sample cases</span></div>
+  <div class="steps">
+    <div class="step"><i>1</i><b>Register</b><span>Register the system at handover.</span></div>
+    <div class="step"><i>2</i><b>Raise a claim</b><span>Serial number, photos and fault details.</span></div>
+    <div class="step"><i>3</i><b>NZ review</b><span>Sungrow NZ reviews and replies.</span></div>
+    <div class="step"><i>4</i><b>Resolve</b><span>Repair, replace or advise, tracked here.</span></div>
+  </div>
+  <div class="cols c2 mt">
+    <div class="card"><h2>Your cases</h2><p class="sub">Open and recent claims</p>
+      <div class="scroll" style="border:0"><table class="tbl"><thead><tr><th>Case</th><th>Product</th><th>Site</th><th>Opened</th><th>Status</th></tr></thead><tbody id="cases"></tbody></table></div></div>
+    <div class="card form"><h2>Register a system</h2><p class="sub">Takes a minute at handover.</p>
+      <label for="rs">Serial number</label><input id="rs" placeholder="From the product label">
+      <label for="rp">Product</label><select id="rp"></select>
+      <label for="rd">Install date</label><input id="rd" type="date">
+      <label for="rt">Site town</label><input id="rt" placeholder="e.g. Tauranga">
+      <div style="margin-top:14px"><button class="btn" onclick="toast('Demo only: registrations are not saved.')">Register system</button></div></div>
+  </div>
+  <div class="note mt">The steps and timings are placeholders until Sungrow supplies its New Zealand warranty process.</div>
+</section>
+
+<!-- MARKETING -->
+<section class="view" id="v-marketing">
+  <div class="ph"><div><div class="crumb">Marketing assets</div><h1>Brand assets for certified installers</h1><p>Approved images, the certified installer badge and the Sungrow NZ film, ready for your website and social posts.</p></div></div>
+  <div class="cols c2">
+    <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+      <video src="video/sungrow-promo-16x9.mp4" poster="img/poster-16x9.jpg" controls preload="none" style="width:100%;max-width:460px;border-radius:12px;background:#000"></video>
+      <div style="flex:1;min-width:200px"><span class="tag brand">Film</span><h2 style="margin-top:8px">Sungrow New Zealand film</h2><p class="sub">84 seconds, 16:9 and 9:16 for phones. Draft by Eko Media for this pitch.</p>
+        <a class="btn sm" href="video/sungrow-promo-16x9.mp4" download>Download 16:9</a> <a class="btn sec sm" href="video/sungrow-promo-9x16.mp4" download>Download 9:16</a></div>
+    </div>
+    <div class="badge">
+      <svg width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Sample certified installer badge">
+        <defs><path id="arc" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+        <circle cx="100" cy="100" r="96" fill="#0f1b2b"/><circle cx="100" cy="100" r="88" fill="none" stroke="#FF7900" stroke-width="3"/>
+        <text font-family="system-ui,sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#ffb36b"><textPath href="#arc" startOffset="2%">CERTIFIED INSTALLER · NEW ZEALAND ·</textPath></text>
+        <image href="img/sg/sungrow-logo.png" x="40" y="86" width="120" height="16"/>
+        <text x="100" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#c3cdd9" letter-spacing="1">SAMPLE BADGE</text>
+      </svg>
+      <div style="text-align:center;font-size:13px;color:var(--muted);margin-top:6px">Certified installer badge <span class="tag sample">Sample design</span></div>
+    </div>
+  </div>
+  <h2 style="font-size:17px;margin:24px 0 10px">Approved images</h2>
+  <div class="assets" id="assets"></div>
+  <p style="font-size:13px;color:var(--muted)">Images from sungrowpower.com, shown here as examples. Usage rights for installers to be confirmed by Sungrow.</p>
+</section>
+</main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+let tt;function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2600);}
+
+/* ---------- data (all sample) ---------- */
+const PRODUCTS=["MG12RL hybrid inverter","MBL batteries (MBL050, MBL120, MBL160)","MGL060","3-phase residential ESS","SBR battery","AC EV charger","PowerKeeper C&I ESS","High-power C&I string inverter"];
+const TYPES=["Installation guide","Quick installation guide","User manual","Datasheet","Grid compliance certificate","Warranty terms"];
+const FT={"Installation guide":"PDF","Quick installation guide":"PDF","User manual":"PDF","Datasheet":"PDF","Grid compliance certificate":"CERT","Warranty terms":"PDF"};
+const DOCS=[];
+const plan={ "MG12RL hybrid inverter":TYPES, "MBL batteries (MBL050, MBL120, MBL160)":["Installation guide","User manual","Datasheet","Warranty terms"], "MGL060":["Installation guide","Datasheet"],
+ "3-phase residential ESS":["Installation guide","Quick installation guide","Datasheet","Grid compliance certificate"], "SBR battery":["Installation guide","User manual","Datasheet","Warranty terms"],
+ "AC EV charger":["Installation guide","User manual","Datasheet"], "PowerKeeper C&I ESS":["Installation guide","Datasheet"], "High-power C&I string inverter":["Installation guide","Datasheet","Grid compliance certificate"]};
+for(const p in plan)for(const t of plan[p])DOCS.push({p,t,title:t==="Grid compliance certificate"?`AS/NZS 4777.2 certificate: ${p.split(" (")[0]}`:`${p.split(" (")[0]}: ${t.toLowerCase().replace(/^./,c=>c.toUpperCase())}`});
+const POPULAR=[0,6,13,17];
+const VIDEOS=[
+ {t:"How to mount the MG12RL",p:"MG12RL hybrid inverter",img:"img/sg/ess-3phase.jpg"},
+ {t:"Commissioning an SBR battery",p:"SBR battery",img:"img/sg/house-night.jpg"},
+ {t:"Coastal installs: mounting and clearances",p:"All residential",img:"img/coast.jpg"},
+ {t:"Wiring an AC EV charger",p:"AC EV charger",img:"img/sg/ev-collage.jpg"}];
+const NOTICES=[
+ {id:1,c:"Product",t:"MG12RL released: what installers need to know",d:"Sample notice · Product",img:"img/sg/mg12rl.jpg",unread:true,
+  body:["Sungrow has released the MG12RL, with flexible battery options covering 5 kWh to 16 kWh.","New Zealand availability, pricing, datasheets and training dates will be posted here as soon as Sungrow NZ confirms them."],src:"Product details from the MG12RL release banner on sungrowpower.com."},
+ {id:2,c:"Product",t:"New 3-phase residential ESS announced",d:"Sample notice · Product",img:"img/sg/ess-3phase.jpg",unread:true,
+  body:["Sungrow has announced a new three-phase residential energy storage system.","Datasheets and the installation guide will appear in the library when Sungrow NZ releases them."],src:"From the 3-phase residential ESS banner on sungrowpower.com."},
+ {id:3,c:"Technical",t:"Coastal installs: mounting checklist",d:"Sample notice · Technical bulletin",unread:true,
+  body:["A one-page checklist for installs near the coast: product ratings, mounting position and clearances."],ph:"Bulletin text to be supplied by Sungrow's technical team."},
+ {id:4,c:"Leads",t:"Find an installer leads now arrive in your portal",d:"Sample notice · Leads",
+  body:["Homeowners who pick you on the national map, or ask from a guide on the NZ hub, now appear under Leads with their town and what they need.","Reply within one working day to keep your place on the map."],ph:"Response-time rule is a placeholder for Sungrow to set."},
+ {id:5,c:"Training",t:"Residential hybrid commissioning webinar",d:"Sample notice · Training",
+  body:["A live session on commissioning residential hybrid systems, with time for questions."],ph:"Date, presenter and joining link to be confirmed by Sungrow NZ."},
+ {id:6,c:"Distributor",t:"Rise Energy: stock and ordering update",d:"Sample notice · Distributor",
+  body:["Monthly update from Rise Energy, Sungrow's New Zealand distributor, on stock and lead times."],ph:"Content to be supplied by Rise Energy."},
+ {id:7,c:"Company",t:"Sungrow ranks No.1 in inverter shipments for 2025",d:"Sample notice · Company news",img:"img/sg/no1.jpg",
+  body:["Sungrow ranks No.1 in global inverter shipments for 2025."],src:"Source: S&P Global Energy estimates, as stated on sungrowpower.com."}];
+const LEADS=[
+ ["L-1048","18 Oct 2026","Mount Maunganui","Home battery","Find an installer","New"],
+ ["L-1047","18 Oct 2026","Papamoa","Hybrid inverter","Guide: Sizing a battery","New"],
+ ["L-1046","17 Oct 2026","Tauranga","Coastal install","Find an installer","New"],
+ ["L-1045","16 Oct 2026","Te Puke","Three-phase","Guide: Three-phase batteries","New"],
+ ["L-1044","15 Oct 2026","Ōmokoroa","EV charger","Find an installer","New"],
+ ["L-1043","14 Oct 2026","Katikati","Home battery","Find an installer","New"],
+ ["L-1039","10 Oct 2026","Rotorua","Hybrid inverter","Find an installer","Contacted"],
+ ["L-1036","7 Oct 2026","Tauranga","Home battery","Guide: Coastal homes","Quoted"],
+ ["L-1031","2 Oct 2026","Whakatāne","Three-phase","Find an installer","Won"],
+ ["L-1027","28 Sep 2026","Papamoa","Home battery","Find an installer","Lost"]];
+const STATUS_TAG={New:"brand",Contacted:"info",Quoted:"sample",Won:"ok",Lost:"bad"};
+const WEEKS=[["31 Aug",3],["7 Sep",4],["14 Sep",2],["21 Sep",5],["28 Sep",6],["5 Oct",4],["12 Oct",7],["19 Oct",6]];
+const COURSES=[
+ {t:"Residential installer certification",s:"Hybrid inverters and batteries for homes.",p:100,st:"Certified",tag:"ok",note:"Renewal due in 41 days"},
+ {t:"Coastal installation practice",s:"Ratings, mounting and clearances near the sea.",p:60,st:"In progress",tag:"info",note:"3 of 5 modules done"},
+ {t:"Warranty claims process",s:"Registering systems and raising claims in NZ.",p:30,st:"In progress",tag:"info",note:"1 of 3 modules done"},
+ {t:"MG12RL product training",s:"Opens when Sungrow NZ publishes it.",p:0,st:"Coming soon",tag:"",note:"Notify me when it opens"}];
+const SESSIONS=[["Residential hybrid commissioning","Online","Date to be confirmed","40"],["Hands-on battery install day","Auckland","Date to be confirmed","16"],["Hands-on battery install day","Christchurch","Date to be confirmed","16"],["C&I storage for installers","Online","Date to be confirmed","40"]];
+const CASES=[["WC-0181","SBR battery","Tauranga","9 Oct 2026","Waiting on you","sample"],["WC-0176","MG12RL hybrid inverter","Papamoa","1 Oct 2026","With Sungrow NZ","info"],["WC-0152","3-phase residential ESS","Te Puke","12 Sep 2026","Resolved","ok"]];
+const ASSETS=[["img/sg/home-night.jpg","Home at night","Lifestyle"],["img/sg/installers.jpg","Installers on site","People"],["img/sg/mg12rl.jpg","MG12RL release","Product banner"],["img/sg/ess-3phase.jpg","3-phase residential ESS","Product banner"],["img/sg/ev-collage.jpg","EV charging at home","Lifestyle"],["img/sg/house-night.jpg","House lit at night","Lifestyle"],["img/sg/no1.jpg","No.1 in inverter shipments","Company"],["img/sg/rooftop-ci.jpg","Commercial rooftop","Business"]];
+
+/* ---------- icons ---------- */
+const IC={doc:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>',
+ msg:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>'};
+
+/* ---------- overview ---------- */
+const mx=Math.max(...WEEKS.map(w=>w[1]));
+$("leadBars").innerHTML=WEEKS.map(([w,v])=>`<div class="b" data-tip="Week of ${w}: ${v} leads" aria-label="Week of ${w}: ${v} leads"><span>${v}</span><i style="height:${v/mx*82}%"></i></div>`).join("");
+$("leadAxis").innerHTML=WEEKS.map(([w])=>`<span>${w}</span>`).join("");
+function renderOvNotices(){$("ovNotices").innerHTML=NOTICES.slice(0,3).map(n=>`<li><span class="ico">${IC.msg}</span><div><b>${n.t}</b><span>${n.c}${n.unread?" · Unread":""}</span></div><a class="btn sec sm r" href="#comms" onclick="sel=${n.id}">Open</a></li>`).join("");}
+$("ovDocs").innerHTML=POPULAR.map(i=>DOCS[i]).map(d=>`<li><span class="ico">${IC.doc}</span><div><b>${d.title}</b><span>${d.t}</span></div><button class="btn sec sm r" onclick="dl()">Open</button></li>`).join("");
+$("ovTraining").innerHTML=COURSES.slice(0,2).map(c=>`<div class="course" style="margin-bottom:16px"><div class="top2"><b>${c.t}</b><span class="tag ${c.tag}">${c.st}</span></div><div class="prog"><i style="width:${c.p}%"></i></div><p>${c.note}</p></div>`).join("")+`<a class="btn sec sm" href="#training">All training</a>`;
+function dl(){toast("Placeholder: file to be supplied by Sungrow.");}
+
+/* ---------- leads ---------- */
+let lf="All";
+function renderLeads(){
+  const sts=["All","New","Contacted","Quoted","Won","Lost"];
+  $("leadChips").innerHTML=sts.map(s=>`<button class="chip" aria-pressed="${s===lf}" onclick="lf='${s}';renderLeads()">${s}${s==="All"?"":" ("+LEADS.filter(l=>l[5]===s).length+")"}</button>`).join("");
+  const rows=LEADS.filter(l=>lf==="All"||l[5]===lf);
+  $("leadRows").innerHTML=rows.map(l=>`<tr><td class="mono">${l[0]}</td><td>${l[1]}</td><td>${l[2]}</td><td>${l[3]}</td><td>${l[4]}</td><td><span class="tag ${STATUS_TAG[l[5]]}">${l[5]}</span></td><td><button class="btn sec sm" onclick="toast('Demo only: contact details are hidden.')">Contact</button></td></tr>`).join("")||`<tr><td colspan="7" class="empty">No leads with this status.</td></tr>`;
+}
+
+/* ---------- comms ---------- */
+let cf="All",sel=1;
+function unreadCount(){return NOTICES.filter(n=>n.unread).length}
+function syncCounts(){const u=unreadCount();$("bellN").textContent=u;$("sideN").textContent=u;$("kpiN").textContent=u;$("bellN").style.display=$("sideN").style.display=u?"":"none";}
+function renderComms(){
+  const cats=["All",...new Set(NOTICES.map(n=>n.c))];
+  $("commChips").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cf}" onclick="cf='${c}';renderComms()">${c}</button>`).join("");
+  const list=NOTICES.filter(n=>cf==="All"||n.c===cf);
+  if(!list.find(n=>n.id===sel)&&list.length)sel=list[0].id;
+  $("nlist").innerHTML=list.map(n=>`<button class="nitem${n.id===sel?" on":""}${n.unread?" unread":""}" onclick="sel=${n.id};renderComms()"><span class="tag ${n.c==="Product"?"brand":n.c==="Technical"?"info":""}">${n.c}</span><b>${n.t}</b><span>${n.d}</span></button>`).join("");
+  const n=NOTICES.find(x=>x.id===sel);
+  if(n){n.unread=false;$("ndetail").innerHTML=`<span class="tag sample">Sample notice</span> <span class="tag">${n.c}</span><h2>${n.t}</h2><div class="meta">From Sungrow New Zealand</div>${n.img?`<img src="${n.img}" alt="">`:""}${n.body.map(p=>`<p>${p}</p>`).join("")}${n.src?`<p style="font-size:12.5px;color:var(--muted)">${n.src}</p>`:""}${n.ph?`<div class="note">${n.ph}</div>`:""}`;}
+  syncCounts();renderOvNotices();
+  [...$("nlist").children].forEach((el,i)=>{if(list[i].id===sel)el.classList.remove("unread")});
+}
+
+/* ---------- library ---------- */
+$("lprod").innerHTML=`<option value="">All products</option>`+PRODUCTS.map(p=>`<option>${p}</option>`).join("");
+$("ltype").innerHTML=`<option value="">All document types</option>`+TYPES.map(t=>`<option>${t}</option>`).join("");
+$("vids").innerHTML=VIDEOS.map(v=>`<div class="vid" onclick="toast('Placeholder: video to be supplied by Sungrow.')"><div class="th"><img src="${v.img}" alt=""></div><div class="bd"><b>${v.t}</b><span>${v.p} · Video to be supplied</span></div></div>`).join("");
+function renderLib(){
+  const q=$("lq").value.trim().toLowerCase(),p=$("lprod").value,t=$("ltype").value;
+  const r=DOCS.filter(d=>(!p||d.p===p)&&(!t||d.t===t)&&(!q||(d.title+" "+d.p+" "+d.t).toLowerCase().includes(q)));
+  $("lcount").textContent=`${r.length} of ${DOCS.length}`;
+  $("docs").innerHTML=r.map(d=>{const f=FT[d.t];return `<div class="doc"><div class="hd"><span class="ft ${f==="CERT"?"cert":""}">${f}</span><div><b>${d.title}</b><div class="pm">${d.t} · English</div></div></div><div class="act"><span class="tag sample">Awaiting file</span><button class="btn sec sm" onclick="dl()">Download</button></div></div>`}).join("")||`<div class="card empty">Nothing matches "${$("lq").value}". Try a product name such as MG12RL or SBR.</div>`;
+}
+["lq","lprod","ltype"].forEach(id=>$(id).addEventListener("input",renderLib));
+$("gsearch").addEventListener("submit",e=>{e.preventDefault();$("lq").value=$("gq").value;go("library");renderLib();});
+
+/* ---------- training / warranty / marketing ---------- */
+$("courses").innerHTML=COURSES.map(c=>`<div class="card course"><div class="top2"><b>${c.t}</b><span class="tag ${c.tag}">${c.st}</span></div><p>${c.s}</p><div class="prog"><i style="width:${c.p}%"></i></div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px"><span style="font-size:13px;color:var(--muted)">${c.note}</span><button class="btn ${c.p===100?"sec":""} sm" onclick="toast('Demo only: courses open in the live portal.')">${c.p===100?"View certificate":c.p===0?"Notify me":"Continue"}</button></div></div>`).join("");
+$("sessions").innerHTML=SESSIONS.map(s=>`<tr><td><b>${s[0]}</b></td><td>${s[1]}</td><td><span class="tag sample">${s[2]}</span></td><td>${s[3]}</td><td><button class="btn sec sm" onclick="toast('Demo only: booking opens in the live portal.')">Book</button></td></tr>`).join("");
+$("cases").innerHTML=CASES.map(c=>`<tr><td class="mono">${c[0]}</td><td>${c[1]}</td><td>${c[2]}</td><td>${c[3]}</td><td><span class="tag ${c[5]}">${c[4]}</span></td></tr>`).join("");
+$("rp").innerHTML=PRODUCTS.map(p=>`<option>${p}</option>`).join("");
+$("assets").innerHTML=ASSETS.map(a=>`<div class="asset"><img src="${a[0]}" alt="${a[1]}"><div class="bd"><div><b>${a[1]}</b><span>${a[2]}</span></div><a class="btn sec sm" href="${a[0]}" download>Download</a></div></div>`).join("");
+
+/* ---------- router ---------- */
+const VIEWS=["overview","map","leads","comms","library","training","warranty","marketing"];
+function go(v){location.hash=v}
+function route(){
+  const v=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"overview";
+  document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
+  document.querySelectorAll(".side a[data-v]").forEach(a=>{a.classList.toggle("on",a.dataset.v===v);if(a.dataset.v===v&&innerWidth<=860)a.scrollIntoView({inline:"center",block:"nearest"})});
+  if(v==="comms")renderComms();
+  if(v==="map"&&!$("mapf").src)$("mapf").src=$("mapf").dataset.src;
+  window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+renderLeads();renderLib();renderOvNotices();syncCounts();route();
+</script>
+</body>
+</html>

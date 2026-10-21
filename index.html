@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sungrow NZ · Search and AI visibility review · Eko Media</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--navy:#070f22;--navy2:#0d1a36;--ink:#0f1a2e;--muted:#5b6776;--line:#e3e7ec;--paper:#f5f7fb;--blue:#79abff;--violet:#a98cff;--teal:#34d6c5;--coral:#ff5c6e;--orange:#f08c00}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+a{color:inherit}
+.conf{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--navy);color:#9fb0cc;font:11px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;display:flex;gap:12px;align-items:center}
+.conf .demos{margin-left:auto;display:flex;gap:6px;text-transform:none;letter-spacing:0;font:600 12.5px system-ui,sans-serif}
+.conf .demos a{background:#16264a;color:#fff;text-decoration:none;padding:6px 10px;border-radius:999px;border:1px solid #2a3d66}
+.conf .demos a:hover{border-color:var(--teal)}
+.dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:8px}
+.dots a{width:9px;height:9px;border-radius:50%;background:#b8c2d3;display:block}
+.dots a.on{background:var(--teal);transform:scale(1.3)}
+.slide{min-height:100vh;scroll-snap-align:start;padding:76px 0 48px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.dark{background:var(--navy);color:#e8eefb}
+.dark .muted,.dark .lede{color:#9fb0cc}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 32px}
+.kick{font:12px ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:#6b7ea3;margin:0 0 10px}
+.dark .kick{color:var(--blue)}
+h1,h2{font-weight:800;letter-spacing:-.015em;line-height:1.08;margin:0 0 14px}
+h1{font-size:clamp(34px,5.2vw,62px)}
+h2{font-size:clamp(28px,3.6vw,44px);max-width:22ch}
+.lede{font-size:18px;color:var(--muted);max-width:60ch;margin:0 0 26px}
+.muted{color:var(--muted)}
+.src{font-size:12px;color:#7d8899;margin-top:22px;max-width:120ch}
+.dark .src{color:#7186ab}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.dark .card{background:var(--navy2);border-color:#1f305a}
+.card .k{font:11px ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:#6b7ea3}
+.card .big{font-size:34px;font-weight:800;line-height:1.05;margin:8px 0 4px}
+.card .big.bad{color:var(--coral)}
+.card .big.good{color:#13a596}
+.card h3{font-size:16px;margin:0 0 6px}
+.card p{margin:0;font-size:14px;color:var(--muted)}
+.dark .card p{color:#9fb0cc}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#04241f;font-weight:700;text-decoration:none;border-radius:999px;padding:11px 18px;font-size:15px;border:0;cursor:pointer}
+.btn.ghost{background:transparent;color:inherit;border:1px solid currentColor}
+.btn::after{content:"→"}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+/* cover */
+.cover{background:linear-gradient(90deg,rgba(7,15,34,.96) 0%,rgba(7,15,34,.82) 45%,rgba(7,15,34,.25) 100%),url(img/cover.jpg) center/cover}
+.cover .row{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.brand{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;font:12px ui-monospace,monospace;letter-spacing:.14em;color:#9fb0cc}
+.brand b{font:800 20px system-ui,sans-serif;letter-spacing:.04em;color:#fff}
+.brand b span{background:linear-gradient(90deg,var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.serp{background:#fff;color:#202124;border-radius:14px;padding:16px 18px;box-shadow:0 20px 50px rgba(0,0,0,.35);font-size:13.5px}
+.serp .q{border:1px solid #dfe1e5;border-radius:999px;padding:8px 14px;margin-bottom:10px}
+.serp .r{padding:7px 0;border-bottom:1px solid #f1f3f4}
+.serp .r small{color:#4d5156}
+.serp .r b{display:block;color:#1a0dab;font-weight:500}
+.serp .miss{margin-top:10px;background:#fdecee;color:#b3261e;border-radius:8px;padding:8px 10px;font-weight:600}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:34px}
+.chip{background:rgba(13,26,54,.85);border:1px solid #1f305a;border-radius:12px;padding:12px 14px}
+.chip .k{font:10.5px ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.chip div{font-size:14px;color:#e8eefb;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:14px;overflow:hidden}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:11px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#6b7ea3;background:#fafbfd}
+.tag{display:inline-block;font-size:11.5px;background:#eef1f6;border-radius:4px;padding:1px 6px;margin-top:3px;color:#4a5668}
+.no{color:var(--coral);font-weight:700}
+.yes{color:#13a596;font-weight:700}
+.paa{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.paa span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:13.5px}
+.scroll{overflow-x:auto}
+.eng .big{font-size:28px}
+.srcbars{display:grid;grid-template-columns:190px 1fr 40px;gap:10px 12px;align-items:center;font-size:14px}
+.srcbars .t{height:14px;background:#16264a;border-radius:4px}
+.srcbars .f{height:100%;border-radius:4px;background:#5b6f96}
+.srcbars .f.me{background:linear-gradient(90deg,var(--blue),var(--violet))}
+.srcbars small{display:block;color:#7186ab;font-size:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.photo{background:linear-gradient(90deg,rgba(7,15,34,.95) 0%,rgba(7,15,34,.7) 50%,rgba(7,15,34,.35) 100%),var(--img) center/cover}
+.stat2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mock2{display:grid;grid-template-columns:1fr 1.25fr;gap:20px;align-items:stretch}
+.today .item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:10px;font-size:13.5px}
+.today .item .u{font:11.5px ui-monospace,monospace;color:#6b7ea3;margin-bottom:6px}
+.today .item .big{font-size:30px;font-weight:800;color:var(--coral)}
+.today .item .flag{color:var(--coral);font-weight:600;margin-top:6px}
+.frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column;box-shadow:0 12px 30px rgba(15,26,46,.12)}
+.frame .bar{background:#eef1f6;padding:8px 12px;font:12px ui-monospace,monospace;color:#5b6776;display:flex;gap:8px;align-items:center}
+.frame .bar i{width:9px;height:9px;border-radius:50%;background:#d0d6df;display:inline-block}
+.frame iframe{border:0;width:100%;flex:1;min-height:440px}
+.qs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.qs .card{background:rgba(13,26,54,.88)}
+.qs b{display:block;font-size:19px;color:#fff;margin-bottom:6px}
+.score{font-weight:800;font-size:18px}
+.plan{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.plan .card{display:flex;flex-direction:column}
+.plan .pair{display:flex;gap:6px;margin-top:auto}.plan .pair .btn{margin-top:0}
+.plan .n{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:10px}
+.plan .w{font:11px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#6b7ea3}
+.plan h3{margin:4px 0 8px}
+.plan ul{margin:0 0 14px;padding-left:18px;font-size:13.5px;color:var(--muted);flex:1}
+.plan .btn{font-size:13px;padding:8px 12px;align-self:flex-start}
+.plan .none{font-size:12.5px;color:#7d8899;font-style:italic}
+.disclaim{margin-top:22px;font-size:14px;color:var(--muted);border-left:3px solid var(--teal);padding-left:12px}
+.base td:last-child{font-weight:700;white-space:nowrap}
+.need{list-style:none;padding:0;margin:0}
+.need li{background:var(--navy2);border:1px solid #1f305a;border-radius:10px;padding:11px 14px;margin-bottom:8px;font-size:14.5px}
+.need li::before{content:"✓";color:var(--teal);font-weight:700;margin-right:10px}
+.close{text-align:center}
+.close h2{margin:0 auto 14px;max-width:18ch;font-size:clamp(32px,4.4vw,54px)}
+.close .lede{margin:0 auto 22px}
+.contact{margin-top:30px;font-size:15px;color:#9fb0cc}
+.contact b{color:#fff}
+.method{font-size:11.5px;color:#7186ab;max-width:110ch;margin:40px auto 0;text-align:left}
+.film{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.film video{width:100%;border-radius:14px;background:#000;display:block;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.film .v916{width:260px}
+.vfb{font-size:13px;color:#9fb0cc;margin:10px 0 0}.vfb a{color:#5fe0cf}
+.film .seg{display:inline-flex;border:1px solid #2a3d66;border-radius:999px;overflow:hidden;margin-bottom:14px}
+.film .seg button{font:600 13px system-ui,sans-serif;background:transparent;color:#cdd8ee;border:0;padding:8px 14px;cursor:pointer}
+.film .seg button[aria-pressed=true]{background:var(--teal);color:#04241f}
+@media (max-width:900px){
+  .film{grid-template-columns:1fr}.film .v916{width:min(260px,70vw);margin:0 auto}
+  html{scroll-snap-type:none}
+  .slide{min-height:auto;padding:64px 0 40px}
+  .wrap{padding:0 16px}
+  .cover .row,.two,.mock2,.qs{grid-template-columns:1fr}
+  .grid3,.grid4,.chips{grid-template-columns:1fr 1fr}
+  .grid5,.plan{grid-template-columns:1fr}
+  .dots{display:none}
+  .conf .lbl{display:none}
+  .srcbars{grid-template-columns:120px 1fr 32px;font-size:13px}
+  .frame iframe{min-height:520px}
+  .cover{background:linear-gradient(180deg,rgba(7,15,34,.92),rgba(7,15,34,.85)),url(img/cover.jpg) center/cover}
+}
+@media (max-width:900px){.scroll table{min-width:720px}}
+@media (max-width:520px){.grid3,.grid4,.chips{grid-template-columns:1fr}}
+@media print{.conf,.dots{display:none}.slide{min-height:auto;break-after:page}}
+</style>
+</head>
+<body>
+<div class="conf"><span class="lbl">Private &amp; confidential · Prepared by Eko Media for Sungrow · Not for publication</span>
+  <span class="demos"><a href="#sf">Film</a><a href="nz-hub.html">NZ hub mock-up</a><a href="installer-map.html">Installer map</a><a href="installer-portal.html">Installer dashboard</a><a href="dashboard.html">Search baselines</a></span></div>
+<nav class="dots" id="dots" aria-label="Sections"></nav>
+
+<!-- COVER -->
+<section class="slide dark cover" id="s0" data-t="Cover"><div class="wrap">
+  <div class="brand"><div><b>EKO<span>MEDIA</span></b><br>AI · SEARCH · GROWTH</div><div>SUNGROW | NEW ZEALAND | GOOGLE &amp; AI</div></div>
+  <div class="row">
+    <div>
+      <h1>New Zealand asks Google which battery to buy. Sungrow is not in the answer.</h1>
+      <p class="lede">Sungrow ships more inverters than any maker in the world. In New Zealand, homeowners searching for an inverter or a battery meet Fronius, GoodWe, Tesla and Sigenergy first, on sites Sungrow does not run.</p>
+      <div class="btns" style="margin-top:0"><a class="btn" href="#sf">Watch the film</a><a class="btn ghost" href="#s1">See the findings</a></div>
+    </div>
+    <div class="serp" aria-label="Google results for best home battery nz">
+      <div class="q">best home battery nz</div>
+      <div class="r"><small>solarscout.co.nz</small><b>Solar Battery Storage NZ: Costs, Brands, and Is It Worth It?</b>Tesla Powerwall 3 is the most recognised home battery in New Zealand...</div>
+      <div class="r"><small>mysolarquotes.co.nz</small><b>Solar Battery Storage, Product Comparison</b></div>
+      <div class="r"><small>reddit.com › r/nzev</small><b>Which solar and battery system</b>I'm leaning towards the Sigenergy system...</div>
+      <div class="r"><small>lightforce.co.nz</small><b>Solar Battery NZ</b>The Sigenergy SigenStor Battery...</div>
+      <div class="miss">No Sungrow page or mention in the top 9</div>
+      <div style="font-size:11.5px;color:#70757a;margin-top:8px">Google, Auckland, logged out · 14 Oct 2026 · first four results shown as returned</div>
+    </div>
+  </div>
+  <div class="chips">
+    <div class="chip"><div class="k">Buying searches</div><div>0 of 3 show a Sungrow page</div></div>
+    <div class="chip"><div class="k">New Zealand website</div><div>None. sungrowpower.com/nz is a 404</div></div>
+    <div class="chip"><div class="k">Warranty in NZ</div><div>Answers go to Sydney</div></div>
+    <div class="chip"><div class="k">Google Maps</div><div>1 listing for "Sungrow installer"</div></div>
+  </div>
+</div></section>
+
+<!-- FILM -->
+<section class="slide dark" id="sf" data-t="The film"><div class="wrap">
+  <p class="kick">The film · 84 seconds</p>
+  <h2>The findings in under a minute and a half</h2>
+  <p class="lede">The same story as this review, cut for a phone screen first. The 16:9 version is for the meeting room.</p>
+  <div class="film">
+    <div><video id="v169" src="video/sungrow-promo-16x9.mp4" poster="img/poster-16x9.jpg" controls preload="metadata" playsinline></video><p class="vfb">Not playing? <a href="video/sungrow-promo-16x9.mp4" target="_blank">Open the 16:9 film on its own</a></p></div>
+    <div><p class="kick" style="margin-bottom:10px">Phone version (9:16)</p>
+    <video id="v916" class="v916" src="video/sungrow-promo-9x16.mp4" poster="img/poster-9x16.jpg" controls preload="metadata" playsinline></video><p class="vfb"><a href="video/sungrow-promo-9x16.mp4" target="_blank">Open the 9:16 film</a></p></div>
+  </div>
+  <p class="src">Figures in the film come from this review, plus two outside sources shown on screen: homes with solar (University of Auckland, 23 Jul 2026) and the election (Electoral Commission key dates; PHCC election briefing, 24 Sep 2026).</p>
+</div></section>
+
+<!-- 01 -->
+<section class="slide" id="s1" data-t="Google foundation"><div class="wrap">
+  <p class="kick">01 · The Google foundation</p>
+  <h2>On Google, New Zealand has no Sungrow front door.</h2>
+  <p class="lede">Google is where AI engines read first. Today a New Zealand buyer who searches for Sungrow, its warranty or a Sungrow installer is sent to Australia, to resellers, or to a competitor.</p>
+  <div class="grid3">
+    <div class="card"><div class="k">Buying searches</div><div class="big bad">0 of 3</div><h3>No Sungrow page in Google's top 10</h3><p>For best inverter, best home battery, and hybrid inverter and battery. Sungrow is named in 5 of 26 results, all on reseller or review sites.</p></div>
+    <div class="card"><div class="k">Brand search</div><div class="big bad">No NZ page</div><h3>"sungrow nz" lands on the global site</h3><p>Sungrow's global site and two global news posts rank. The other six are resellers and a distributor. There is no New Zealand page for Google to rank.</p></div>
+    <div class="card"><div class="k">Warranty search</div><div class="big bad">0 NZ pages</div><h3>"sungrow warranty nz" points to Sydney</h3><p>The top result is the Australia and New Zealand service site: a North Sydney office, an Australian 1800 number and a +61 line.</p></div>
+    <div class="card"><div class="k">Google Maps</div><div class="big bad">1 listing</div><h3>"Sungrow installer", Auckland</h3><p>The only listing returned is a solar retailer whose battery page features Sigenergy. The same search for Sigenergy returns the same listing.</p></div>
+    <div class="card"><div class="k">Reputation</div><div class="big bad">1.9 / 5</div><h3>The review score Google shows</h3><p>A ProductReview.com.au listing rates Sungrow 1.9 from 41 reviews, filed as a "Solar Panel Installer". Solar Choice shows 4.75 from 269. Neither is a New Zealand source.</p></div>
+    <div class="card"><div class="k">Buyer questions</div><div class="big bad">8</div><h3>Questions Google surfaces that Sungrow does not answer</h3><p>Including "Is Sungrow a Chinese company?", which appears on three separate searches.</p></div>
+  </div>
+  <p class="src">Google results read via two independent search connectors, location Auckland NZ, logged out, 14 October 2026. Review scores as shown in Google results on the same date.</p>
+</div></section>
+
+<!-- 02 -->
+<section class="slide" id="s2" data-t="Search by search"><div class="wrap">
+  <p class="kick">02 · Search by search</p>
+  <h2>Eight searches a New Zealand buyer makes</h2>
+  <p class="lede">Where Sungrow's own pages rank, how often Sungrow is named, and who holds the top three. A Sungrow page ranks on three of the eight, and all three are Australian or global pages.</p>
+  <div class="scroll"><table>
+    <tr><th>Search</th><th>Sungrow page</th><th>Sungrow named in</th><th>Top three</th><th>What it means</th></tr>
+    <tr><td>"best solar inverter nz"<br><span class="tag">Buying</span></td><td class="no">Not in top 10</td><td>3 of 8 results</td><td>mysolarquotes.co.nz<br>solarscout.co.nz<br>thinksolar.co.nz</td><td>No Sungrow page. Top guides lead with Fronius and GoodWe.</td></tr>
+    <tr><td>"best home battery nz"<br><span class="tag">Buying</span></td><td class="no">Not in top 10</td><td>0 of 9 results</td><td>solarscout.co.nz<br>mysolarquotes.co.nz<br>reddit.com/r/nzev</td><td>No Sungrow page and no Sungrow mention. Tesla Powerwall 3 and Sigenergy are the names.</td></tr>
+    <tr><td>"hybrid inverter and battery nz"<br><span class="tag">Buying</span></td><td class="no">Not in top 10</td><td>2 of 9 results</td><td>ideal.co.nz<br>distributor shop page<br>solarpartnersnz.nz</td><td>Sungrow appears only on reseller shop pages.</td></tr>
+    <tr><td>"sungrow nz"<br><span class="tag">Brand</span></td><td>#1</td><td>9 of 9 results</td><td>en.sungrowpower.com (global)<br>riseenergy.co.nz<br>ideal.co.nz</td><td>The global site and two global news posts rank. No New Zealand page exists to send buyers to.</td></tr>
+    <tr><td>"sungrow warranty nz"<br><span class="tag">Brand</span></td><td>#1</td><td>9 of 9 results</td><td>service.sungrowpower.com.au<br>sungrowpower.com (India path)<br>service.sungrowpower.com.au</td><td>Answers point to Sydney: an Australian 1800 number and a +61 line.</td></tr>
+    <tr><td>"is sungrow a good brand"<br><span class="tag">Brand</span></td><td class="no">Not in top 10</td><td>7 of 7 results</td><td>reddit.com/r/solar<br>solarquotes.com.au<br>mcelectrical.com.au</td><td>All seven results are Australian or global. None is from New Zealand or from Sungrow.</td></tr>
+    <tr><td>"sungrow vs sigenergy"<br><span class="tag">Compare</span></td><td class="no">Not in top 10</td><td>7 of 7 results</td><td>reddit.com/r/solar<br>gienergy.com.au<br>facebook.com groups</td><td>Comparisons are written by Australian installers and forums.</td></tr>
+    <tr><td>"sungrow battery price nz"<br><span class="tag">Brand</span></td><td>#5</td><td>8 of 9 results</td><td>mysolarquotes.co.nz<br>distributor shop page<br>acsolarwarehouse.co.nz</td><td>A third-party NZ blog owns Sungrow's own three-phase battery story.</td></tr>
+  </table></div>
+  <p class="kick" style="margin-top:22px">People also ask, on these searches</p>
+  <div class="paa"><span>Is Sungrow a Chinese company?</span><span>Is Sungrow a good solar system?</span><span>What is the lifespan of a Sungrow battery?</span><span>How much does a Sungrow battery cost?</span><span>Who manufactures Sungrow inverters?</span><span>What is the best solar battery in New Zealand?</span><span>Is a 10kW battery enough to run a house?</span><span>How long will a 10kWh battery last?</span></div>
+  <div class="btns"><a class="btn ghost" href="dashboard.html">See it in the search baselines</a></div>
+  <p class="src">Google results read via two independent search connectors, location Auckland NZ, logged out, 14 October 2026. "Sungrow page" means a page on a Sungrow-owned domain. A second connector agreed on "best solar inverter nz": no Sungrow page in its top 10.</p>
+</div></section>
+
+<!-- 03 -->
+<section class="slide" id="s3" data-t="What AI says"><div class="wrap">
+  <p class="kick">03 · What AI says</p>
+  <h2>AI knows Sungrow. It does not put Sungrow first.</h2>
+  <p class="lede">Nine buying and advice questions, three runs each. The AI engines name Sungrow in 50 of 81 answers. Fronius leads on inverters, Tesla leads on batteries, and nobody owns the battery sizing questions.</p>
+  <div class="grid5 eng">
+    <div class="card"><div class="k">Google Search</div><div class="big">12 of 27</div><p>result pages that name Sungrow</p></div>
+    <div class="card"><div class="k">AI Overviews</div><div class="big">16 of 27</div><p>answers that name Sungrow</p></div>
+    <div class="card"><div class="k">AI Mode</div><div class="big">18 of 27</div><p>answers that name Sungrow</p></div>
+    <div class="card"><div class="k">ChatGPT</div><div class="big">16 of 27</div><p>answers that name Sungrow</p></div>
+    <div class="card"><div class="k">Perplexity</div><div class="big" style="color:#7d8899">Not run</div><p>Provider outage on the run day</p></div>
+  </div>
+  <p class="kick" style="margin-top:24px">The presented list: how often Sungrow is named, out of three runs</p>
+  <div class="scroll"><table>
+    <tr><th>Question</th><th>Google Search</th><th>AI Overviews</th><th>AI Mode</th><th>ChatGPT</th><th>Named first</th></tr>
+    <tr><td>Best solar inverter brand in NZ</td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #3 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>Fronius</td></tr>
+    <tr><td>Inverter brands NZ installers recommend</td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #4 named</span></td><td>3 of 3<br><span class="tag">usually #4 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>Fronius</td></tr>
+    <tr><td>Hybrid inverter and battery for my house</td><td>3 of 3<br><span class="tag">usually #7 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #1 named</span></td><td>Mixed</td></tr>
+    <tr><td>Best home battery for solar in NZ</td><td class="no">0 of 3</td><td>3 of 3<br><span class="tag">usually #5 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>1 of 3<br><span class="tag">usually #4 named</span></td><td>Tesla</td></tr>
+    <tr><td>Battery for a three-phase supply</td><td>3 of 3<br><span class="tag">usually #1 named</span></td><td>2 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>Tesla</td></tr>
+    <tr><td>Inverter and battery for a coastal home</td><td class="no">0 of 3</td><td>2 of 3<br><span class="tag">usually #5 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>3 of 3<br><span class="tag">usually #2 named</span></td><td>Mixed</td></tr>
+    <tr><td>Is a 10 kWh battery enough?</td><td class="no">0 of 3</td><td class="no">0 of 3</td><td class="no">0 of 3</td><td class="no">0 of 3</td><td>No brand</td></tr>
+    <tr><td>Battery size for an Auckland family</td><td class="no">0 of 3</td><td class="no">0 of 3</td><td class="no">0 of 3</td><td class="no">0 of 3</td><td>No brand</td></tr>
+  </table></div>
+  <div class="grid3" style="margin-top:16px">
+    <div class="card"><div class="k">Inverters</div><div class="big">24 of 24</div><h3>Named in every inverter answer, always behind Fronius</h3><p>Asked for the best inverter brand, or which brands installers recommend, every engine names Sungrow every time. Fronius is named first in all 24 of those answers.</p></div>
+    <div class="card"><div class="k">Batteries</div><div class="big">7 of 12</div><h3>On the best home battery, Tesla is named first every time</h3><p>Tesla leads all 12 answers. Sungrow is missing from Google Search and from 2 of 3 ChatGPT answers. In AI Overviews it comes after Tesla and BYD.</p></div>
+    <div class="card"><div class="k">Battery sizing</div><div class="big bad">0 of 24</div><h3>No engine names Sungrow when a family asks what size battery to buy</h3><p>The answers are general advice. When a brand is named it is Tesla, BYD or Pylontech. This is open ground for the first brand with New Zealand sizing guides.</p></div>
+    <div class="card"><div class="k">Warranty</div><div class="big bad">9 of 9</div><h3>AI sends New Zealand warranty claims to Australia</h3><p>Every AI answer on making a warranty claim in New Zealand points to Sungrow's Australian service team. None gives a New Zealand phone number.</p></div>
+    <div class="card"><div class="k">Product facts</div><div class="big">2 of 9</div><h3>Engines contradict each other on whether Sungrow makes solar panels</h3><p>Two AI answers say yes and seven say no, sometimes from the same engine on the same day. Clear product facts on a New Zealand page give the engines one answer to repeat.</p></div>
+    <div class="card"><div class="k">Distributor</div><div class="big good">8 of 8</div><h3>Every answer names Rise Energy as the New Zealand distributor</h3><p>A clear, published New Zealand fact reaches the answers. The same can work for warranty, installers and battery sizing.</p></div>
+  </div>
+  <p class="src">AI answers collected via API, logged out, location Auckland NZ, each question asked 3 times per engine, 14 October 2026. Google Search counts a results page as naming Sungrow when Sungrow appears in it. Perplexity was not available on the run day.</p>
+</div></section>
+
+<!-- 04 -->
+<section class="slide dark" id="s4" data-t="Sources"><div class="wrap two">
+  <div>
+    <p class="kick">04 · Where the answers come from</p>
+    <h2>Other people are telling Sungrow's story in New Zealand.</h2>
+    <p class="lede">AI reads a New Zealand comparison site more than it reads Sungrow. These are the sites that rank on the eight searches, plus "sigenergy nz". AI engines read the same pages. When they are thin or Australian, so is the answer about Sungrow.</p>
+    <p class="kick" style="margin-top:20px">Times each source ranked, across nine searches</p>
+    <div class="srcbars" style="grid-template-columns:1fr 40px">
+      <div>solarscout.co.nz<small>NZ comparison site. Ranks for inverters, batteries, Sigenergy and price</small></div><b>6</b>
+      <div>ideal.co.nz<small>Electrical wholesaler with brand pages for Sungrow and Sigenergy</small></div><b>5</b>
+      <div>mysolarquotes.co.nz<small>NZ quote site. Wrote the Sungrow three-phase battery article</small></div><b>4</b>
+      <div>reddit.com<small>r/solar and r/nzev threads, quoted widely by AI engines</small></div><b>3</b>
+      <div>Sungrow resellers and distributors<small>Shop pages that carry the Sungrow name but little buying advice</small></div><b>10</b>
+      <div>Australian installer and review sites<small>solarquotes.com.au, productreview.com.au, gienergy.com.au, solarchoice.net.au and others answering NZ questions</small></div><b>14</b>
+    </div>
+  </div>
+  <div>
+    <p class="kick">Sources quoted across 161 AI answers</p>
+    <div class="srcbars">
+      <div>solarscout.co.nz<small>NZ comparison site</small></div><div class="t"><div class="f" style="width:100%"></div></div><b>72</b>
+      <div>Sungrow's own sites<small>29 of 53 ChatGPT, 7 of 54 AI Overviews</small></div><div class="t"><div class="f me" style="width:69%"></div></div><b>50</b>
+      <div>eeca.govt.nz<small>Government energy advice</small></div><div class="t"><div class="f" style="width:28%"></div></div><b>20</b>
+      <div>youtube.com<small>Video pages</small></div><div class="t"><div class="f" style="width:28%"></div></div><b>20</b>
+      <div>solarquotes.com.au<small>Australian review site</small></div><div class="t"><div class="f" style="width:26%"></div></div><b>19</b>
+      <div>riseenergy.co.nz<small>NZ distributor</small></div><div class="t"><div class="f" style="width:26%"></div></div><b>19</b>
+      <div>reddit.com<small>Owner discussion threads</small></div><div class="t"><div class="f" style="width:25%"></div></div><b>18</b>
+    </div>
+    <p class="src">Each answer counts once per source. Google results read via two independent search connectors, Auckland NZ, logged out, 14 October 2026. Resellers and distributors are grouped as one row, as are Australian installer and review sites.</p>
+  </div>
+</div></section>
+
+<!-- 05 -->
+<section class="slide dark photo" id="s5" data-t="The story" style="--img:url(img/farm.jpg)"><div class="wrap two">
+  <div>
+    <p class="kick">05 · The story nobody is telling</p>
+    <h2>Sungrow powers New Zealand's largest solar farm. Homeowners never hear it.</h2>
+    <p class="lede">Tauhei Solar Farm in Waikato runs on 27 Sungrow central inverters. That proof sits in a global newsroom post. No New Zealand page connects it to the inverter or battery a family is choosing.</p>
+    <div class="btns"><a class="btn" href="nz-hub.html#proof">See it on the NZ hub mock-up</a></div>
+  </div>
+  <div class="card" style="background:rgba(13,26,54,.88)">
+    <div class="k">Tauhei Solar Farm, Waikato · Sungrow newsroom, 12 Oct 2025</div>
+    <div class="stat2" style="margin-top:14px">
+      <div><div class="big">27</div><p>SG6800HV-MV central inverters</p></div>
+      <div><div class="big">1</div><p>PPC1000 power plant controller</p></div>
+      <div><div class="big">Global</div><p>Where the story is published</p></div>
+      <div><div class="big bad">0</div><p>New Zealand pages that link to it</p></div>
+    </div>
+  </div>
+</div><div class="wrap"><p class="src">Source: sungrowpower.com newsroom, "Sungrow Powers New Zealand's Largest Solar Farm", read 14 Oct 2026. Photograph is illustrative.</p></div></section>
+
+<!-- 06 -->
+<section class="slide" id="s6" data-t="Mock-ups"><div class="wrap">
+  <p class="kick">06 · Mock-ups</p>
+  <h2>Today, and what a New Zealand front door looks like</h2>
+  <p class="lede">Left: what a buyer gets today when they search for Sungrow help in New Zealand. Right: a working mock-up of a New Zealand hub on Sungrow's own site that Google, Maps and AI engines can all read. Click around it, or open it full screen.</p>
+  <div class="mock2">
+    <div class="today">
+      <p class="kick">Today · "sungrow warranty nz"</p>
+      <div class="item"><div class="u">service.sungrowpower.com.au</div><b>Sungrow Australia and New Zealand Service</b><br>Office Address: Level 7/1 Elizabeth Plaza, North Sydney NSW 2060<br>Tel: (toll free) 1800 SUNGROW (786 476)<br>Tel Oversea: +61 2 7255 7998<div class="flag">No New Zealand address, phone number or installer list</div></div>
+      <div class="item"><div class="u">www.sungrowpower.com/nz</div><div class="big">404</div>The address a New Zealand buyer would expect does not exist. The Australian regional site serves New Zealand by default.<div class="flag">Google has no New Zealand page to rank</div></div>
+      <div class="item"><div class="u">Google Maps · Auckland</div><b>"Sungrow installer"</b><br>1 result: a solar retailer whose battery page features Sigenergy.<div class="flag">No certified Sungrow installers on the map</div></div>
+    </div>
+    <div>
+      <p class="kick">Proposed · Sungrow New Zealand hub (live mock-up)</p>
+      <div class="frame"><div class="bar"><i></i><i></i><i></i>www.sungrowpower.com/nz/en</div><iframe src="nz-hub.html" title="Sungrow New Zealand hub mock-up"></iframe></div>
+      <div class="btns"><a class="btn" href="nz-hub.html">Open the NZ hub</a><a class="btn ghost" href="installer-map.html">Open the installer map</a></div>
+    </div>
+  </div>
+  <p class="src">Today panels: live pages and Google results read 14 Oct 2026, text quoted as shown. Mock-up for discussion: contact details, installer regions, installer names and page names are placeholders until Sungrow confirms them.</p>
+</div></section>
+
+<!-- 07 -->
+<section class="slide dark photo" id="s7" data-t="Questions" style="--img:url(img/coast.jpg)"><div class="wrap">
+  <p class="kick">07 · Questions to own</p>
+  <h2>Advice comes before the brand choice.</h2>
+  <p class="lede">New Zealanders ask how big, how long and how safe before they ask which brand. Sungrow has strong answers to all four questions below. None of them sits on a Sungrow page written for New Zealand.</p>
+  <div class="qs">
+    <div class="card"><b>"Is a 10 kWh battery enough to run a house?"</b><p>Google People also ask</p></div>
+    <div class="card"><b>"Which inverter is best for a coastal home?"</b><p>Salt mist is a New Zealand question</p></div>
+    <div class="card"><b>"Can I get a battery on three-phase power?"</b><p>Sungrow's own edge, told by a quote site</p></div>
+    <div class="card"><b>"Is Sungrow a Chinese company?"</b><p>Asked on three separate searches</p></div>
+  </div>
+  <div class="btns"><a class="btn" href="nz-hub.html#faq">See where the answers would live</a></div>
+  <p class="src">Questions from Google People also ask and related searches, Auckland, 14 Oct 2026. Photograph is illustrative.</p>
+</div></section>
+
+<!-- 08 -->
+<section class="slide" id="s8" data-t="Machines"><div class="wrap">
+  <p class="kick">08 · What the website tells machines</p>
+  <h2>The site is built for Australia. New Zealand is a footnote.</h2>
+  <p class="lede">Each site is scored on how easily a machine can reach it, read it, and find who the business is and how to contact it. Sungrow's Australian site scores 65%. Sigenergy's scores 84%.</p>
+  <div class="scroll"><table>
+    <tr><th>Site</th><th>Score</th><th>Main gaps</th></tr>
+    <tr><td>sungrowpower.com/au/en</td><td class="score">65%</td><td>No H1 heading. A 9-character meta description. Structured data does not say who the business is. No direct phone or email link.</td></tr>
+    <tr><td>en.sungrowpower.com</td><td class="score">63%</td><td>No H1 heading. Structured data does not say who the business is. No direct phone or email link.</td></tr>
+    <tr><td>service.sungrowpower.com.au</td><td class="score">76%</td><td>No meta description. Eight H1 headings on one page. A quarter of images described for machines.</td></tr>
+    <tr><td>sigenergy.com/au</td><td class="score">84%</td><td>Images carry no descriptions. Everything else machines need is in place.</td></tr>
+  </table></div>
+  <p class="muted" style="margin:16px 0 12px">No site blocks AI crawlers, which is good. None publishes an llms.txt file. Four further findings were checked by hand:</p>
+  <div class="grid4">
+    <div class="card"><div class="k">Website</div><h3>No /nz route</h3><p>sungrowpower.com/nz returns 404. New Zealand is served by the Australian regional site, so every page carries Australian context.</p></div>
+    <div class="card"><div class="k">Website</div><h3>No NZ contact data</h3><p>The service site lists a North Sydney office, an Australian 1800 number and a +61 line. Machines read that as "no local presence".</p></div>
+    <div class="card"><div class="k">Website</div><h3>Installer finder points to distributors</h3><p>The regional site offers "Find a Distributor". Sigenergy's regional site offers "Find an Installer", which is what a homeowner and an AI answer need.</p></div>
+    <div class="card"><div class="k">Website</div><h3>Warranty pages split across four domains</h3><p>Google returns warranty pages on service.sungrowpower.com.au, sungrowpower.com (an India path), sungrowpowerservice.com and Australian retailer PDFs.</p></div>
+  </div>
+  <p class="src">Scan of each home page, 14 Oct 2026, scoring reachability, structured data, AI files, citable content and contact path. Page speed was not measured this round. Pages fetched live the same day: sungrowpower.com/en, /au/en, /nz; service.sungrowpower.com.au; sigenergy.com/au.</p>
+</div></section>
+
+<!-- 09 -->
+<section class="slide" id="s9" data-t="The plan"><div class="wrap">
+  <p class="kick">09 · The plan</p>
+  <h2>Five steps to make Sungrow the New Zealand answer</h2>
+  <p class="lede">Google foundations first, because AI engines build on them. Every step ties to a finding in this review. The first three and the last have a working demo.</p>
+  <div class="plan">
+    <div class="card"><div class="n">1</div><div class="w">Weeks 1 to 4</div><h3>A New Zealand front door</h3><ul><li>NZ hub at sungrowpower.com/nz/en</li><li>NZ contact and warranty page</li><li>Organisation and product data machines can read</li></ul><a class="btn" href="nz-hub.html">Open the NZ hub</a></div>
+    <div class="card"><div class="n">2</div><div class="w">Weeks 3 to 8</div><h3>Installers on the map</h3><ul><li>NZ installer finder by region</li><li>Help certified installers list Sungrow on their Google profiles</li><li>Installer pages that link back to the hub</li><li>A national installer portal: leads, notices, manuals, training</li></ul><div class="pair"><a class="btn" href="installer-map.html">Map</a><a class="btn" href="installer-portal.html">Dashboard</a></div></div>
+    <div class="card"><div class="n">3</div><div class="w">Weeks 4 to 12</div><h3>Answers New Zealanders ask for</h3><ul><li>Battery sizing, coastal installs, three-phase</li><li>Who Sungrow is and who stands behind it here</li><li>Tauhei Solar Farm as the local proof story</li></ul><a class="btn" href="nz-hub.html#faq">Open the answers</a></div>
+    <div class="card"><div class="n">4</div><div class="w">Weeks 6 to 16</div><h3>The sources AI reads</h3><ul><li>Accurate Sungrow data on NZ comparison and quote sites</li><li>A New Zealand review source</li><li>Correct the review listing filed under the wrong category</li></ul><span class="none">Off-site work, no demo</span></div>
+    <div class="card"><div class="n">5</div><div class="w">Day 90</div><h3>Measure</h3><ul><li>Re-run the same 18 questions, same engines</li><li>Re-check the eight Google searches and Maps</li><li>Report what moved and what did not</li></ul><a class="btn" href="dashboard.html">Baselines</a></div>
+  </div>
+  <p class="disclaim">Nobody can promise what an AI engine will say. The work makes Sungrow readable, trustworthy and present in the sources those engines draw from.</p>
+</div></section>
+
+<!-- 10 + 11 -->
+<section class="slide dark" id="s10" data-t="Baselines"><div class="wrap two">
+  <div>
+    <p class="kick">10 · Baselines</p>
+    <h2>Where we start</h2>
+    <table class="base" style="color:var(--ink)">
+      <tr><th>Measure</th><th>Today</th></tr>
+      <tr><td>Buying searches with a Sungrow page in Google's top 10</td><td>0 of 3</td></tr>
+      <tr><td>Brand searches answered by a New Zealand Sungrow page</td><td>0 of 5</td></tr>
+      <tr><td>Google Maps listings for "Sungrow installer", Auckland</td><td>1, not Sungrow-led</td></tr>
+      <tr><td>AI answers naming Sungrow on nine buying and advice questions</td><td>50 of 81</td></tr>
+      <tr><td>AI answers on battery sizing that name Sungrow</td><td>0 of 24</td></tr>
+      <tr><td>AI answers giving a New Zealand warranty contact</td><td>0 of 9</td></tr>
+      <tr><td>Sungrow Australia site, machine readability score</td><td>65%</td></tr>
+    </table>
+    <div class="btns"><a class="btn" href="dashboard.html">Track these in the search baselines</a></div>
+  </div>
+  <div>
+    <p class="kick">11 · What we need from Sungrow</p>
+    <h2>To start in week one</h2>
+    <ul class="need">
+      <li>A New Zealand contact: phone, email and who answers</li>
+      <li>The list of certified New Zealand installers, with permission to publish it</li>
+      <li>The New Zealand warranty process, start to finish</li>
+      <li>New Zealand case studies, residential and commercial</li>
+      <li>Data sheets and salt-mist and three-phase ratings for the NZ range</li>
+      <li>Access to add a New Zealand section to sungrowpower.com, and Search Console for it</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- NEXT STEP -->
+<section class="slide dark close" id="s11" data-t="Next step"><div class="wrap">
+  <p class="kick">Next step</p>
+  <h2>Make Sungrow the name New Zealanders hear first.</h2>
+  <p class="lede">The products, the warranty and the local proof already exist. What is missing is a New Zealand front door that Google, Maps and AI can find.</p>
+  <div class="btns" style="justify-content:center"><a class="btn" href="nz-hub.html">NZ hub mock-up</a><a class="btn" href="installer-map.html">Installer map</a><a class="btn" href="installer-portal.html">Installer dashboard</a><a class="btn" href="dashboard.html">Search baselines</a><a class="btn ghost" href="#s0">Back to the top</a></div>
+  <div class="contact"><b>Eko Media</b> · <a href="https://ekomedia.co.nz">ekomedia.co.nz</a> · <a href="mailto:freddie@ekomedia.co.nz">freddie@ekomedia.co.nz</a></div>
+  <div class="method">
+    <p>PRIVATE &amp; CONFIDENTIAL. Prepared by Eko Media for Sungrow. Not for publication or onward distribution.</p>
+    <p>Google results: eight New Zealand buyer searches plus "sigenergy nz", read via two independent search connectors set to Auckland, New Zealand, logged out, 14 October 2026. Google Maps: local results for "Sungrow installer", "Sigenergy installer", "Tesla Powerwall installer" and "solar battery installer", Auckland, same date. Sungrow and Sigenergy pages fetched live on the same date. Review scores as shown in Google results. Inverter shipment ranking as stated on sungrowpower.com, citing S&amp;P Global, read 14 Oct 2026.</p>
+    <p>AI answers: 18 questions asked of ChatGPT, Perplexity, Google AI Mode, Google AI Overviews and Google Search, three runs each, logged out, from Auckland, 14 October 2026. AI Overviews are counted only when Google showed one. Perplexity could not be measured on the run day because of a provider outage. "Usually #2 named" is the order in which brands are first mentioned in the answer.</p>
+    <p>This document covers search and AI visibility only. It makes no claim about product quality or market share. Platform names and marks belong to their owners and identify where each result was observed. Photography is AI-generated and illustrative. Mock-ups are for discussion and use placeholder details.</p>
+  </div>
+</div></section>
+
+<script>
+const v1=document.getElementById("v169"),v2=document.getElementById("v916");
+[v1,v2].forEach(v=>{v.addEventListener("play",()=>[v1,v2].forEach(o=>{if(o!==v)o.pause();}));
+ v.addEventListener("error",()=>{const f=v.parentElement.querySelector(".vfb");if(f){const l=f.querySelector("a");f.style.color="#ffb36b";f.textContent="This browser could not play the film here. ";l.textContent="Open the film in your video player";f.appendChild(l);}});});
+const S=[...document.querySelectorAll(".slide")],dots=document.getElementById("dots");
+dots.innerHTML=S.map(s=>`<a href="#${s.id}" title="${s.dataset.t}" aria-label="${s.dataset.t}"></a>`).join("");
+const D=[...dots.children];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const i=S.indexOf(e.target);D.forEach((d,j)=>d.classList.toggle("on",i===j));}}),{threshold:.5});
+S.forEach(s=>io.observe(s));
+function cur(){let b=0,best=1e9;S.forEach((s,i)=>{const d=Math.abs(s.getBoundingClientRect().top-40);if(d<best){best=d;b=i;}});return b;}
+addEventListener("keydown",e=>{if(e.target.closest("input,textarea,iframe,video,button"))return;
+ let k=e.key,i=cur();
+ if(k===" "&&S[i].id==="sf"){e.preventDefault();const v=v2.paused&&!v1.paused?v1:(!v2.paused?v2:v1);v.paused?v.play():v.pause();return;}
+ if(["ArrowDown","PageDown","ArrowRight"].includes(k)||(k===" "&&!e.shiftKey)){e.preventDefault();S[Math.min(i+1,S.length-1)].scrollIntoView();}
+ if(["ArrowUp","PageUp","ArrowLeft"].includes(k)||(k===" "&&e.shiftKey)){e.preventDefault();S[Math.max(i-1,0)].scrollIntoView();}
+ if(k==="Home"){e.preventDefault();S[0].scrollIntoView();} if(k==="End"){e.preventDefault();S[S.length-1].scrollIntoView();}});
+</script>
+</body>
+</html>

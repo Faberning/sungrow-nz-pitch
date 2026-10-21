@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sungrow NZ visibility dashboard (mock-up)</title>
+<style>
+:root{--ink:#14202e;--muted:#5b6776;--faint:#8a94a1;--line:#e3e7ec;--bg:#f4f6f8;--card:#fff;--brand:#FF7900;--brand-ink:#9a4300;--rest:#c3cad3;
+--s0:#f3f4f6;--s1:#fde3bf;--s2:#f8b85c;--s3:#d97a00}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--brand-ink)}
+.mock{background:#14202e;color:#fff;font-size:12.5px;padding:7px 16px;text-align:center}
+.mock b{color:#ffc46b}
+header{background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header h1{font-size:19px;margin:0}
+header .meta{color:var(--muted);font-size:13px}
+header nav{margin-left:auto;display:flex;gap:14px;font-size:14px;flex-wrap:wrap}
+.toggle{display:inline-flex;border:1px solid #c9d0d8;border-radius:8px;overflow:hidden}
+.toggle button{font:inherit;font-size:13px;border:0;background:#fff;padding:6px 12px;cursor:pointer}
+.toggle button[aria-pressed=true]{background:#14202e;color:#fff}
+main{max-width:1240px;margin:0 auto;padding:20px 24px 48px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.tile .l{font-size:12.5px;color:var(--muted);min-height:36px}
+.tile .v{font-size:30px;font-weight:700;line-height:1.1;margin-top:6px}
+.tile .d{font-size:12.5px;color:var(--faint);margin-top:4px}
+.tile .d b{color:var(--ink);font-weight:600}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.panel h2{font-size:16px;margin:0 0 2px}
+.panel .sub{font-size:13px;color:var(--muted);margin:0 0 14px}
+.src{font-size:11.5px;color:var(--faint);margin-top:12px}
+.bars{display:grid;grid-template-columns:150px 1fr 64px;gap:8px 10px;align-items:center}
+.bars .n{font-size:13.5px;overflow-wrap:anywhere}
+.track{height:18px;background:var(--s0);border-radius:4px;position:relative}
+.fill{height:100%;border-radius:4px;background:var(--brand)}
+.fill.rest{background:var(--rest)}
+.bars .val{font-size:13px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.na{font-size:12.5px;color:var(--faint);font-style:italic}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600}
+.heat td.c{text-align:center;font-variant-numeric:tabular-nums;border:2px solid #fff;border-radius:6px;font-weight:600}
+.h0{background:var(--s0);color:var(--muted)}.h1{background:var(--s1)}.h2{background:var(--s2)}.h3{background:var(--s3);color:#fff}
+.legend{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.legend i{display:inline-block;width:16px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+.pill{display:inline-block;font-size:12px;border-radius:999px;padding:2px 8px;background:#eef1f4}
+.pill.bad{background:#fdecec;color:#9b2c2c}
+.pill.ok{background:#e7f5ee;color:#1f6b47}
+.gantt{display:grid;grid-template-columns:190px repeat(16,1fr) 56px;gap:4px 2px;align-items:center;font-size:13px}
+.gantt .wk{font-size:11px;color:var(--faint);text-align:center}
+.gantt .bar{height:22px;border-radius:5px;background:var(--brand);color:#fff;font-size:11.5px;display:flex;align-items:center;padding-left:6px;white-space:nowrap;overflow:hidden}
+.gantt .lbl a{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--faint)}
+.gantt .d90{background:#14202e;color:#fff;border-radius:5px;height:22px;display:grid;place-items:center;font-size:11px}
+.tip{position:fixed;pointer-events:none;background:#14202e;color:#fff;font-size:12.5px;padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .1s;max-width:260px;z-index:9}
+[data-tip]{cursor:default}
+.after{display:none}
+body.show-after .after{display:inline}
+body.show-after .today-only{display:none}
+@media (max-width:900px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .row{grid-template-columns:1fr}
+  main{padding:16px}
+  header{padding:12px 16px}
+  header nav{margin-left:0}
+  .bars{grid-template-columns:110px 1fr 56px}
+  .gantt{grid-template-columns:120px repeat(16,1fr) 40px}
+  .scroll{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+<div class="mock"><b>Mock-up by Eko Media for discussion.</b> "Today" values are from Eko's scan on 14 Oct 2026. "Day 90" stays empty until the re-run.</div>
+<header>
+  <h1>Sungrow NZ · Search and AI visibility</h1>
+  <span class="meta">Baseline scan 14 Oct 2026 · Auckland, logged out</span>
+  <nav>
+    <span class="toggle" role="group" aria-label="Period"><button type="button" aria-pressed="true" data-p="today">Today</button><button type="button" aria-pressed="false" data-p="after">Day 90</button></span>
+    <a href="index.html">Review</a><a href="nz-hub.html">NZ hub mock-up</a><a href="installer-map.html">Installer map</a><a href="installer-portal.html">Installer dashboard</a>
+  </nav>
+</header>
+<main>
+  <div class="tiles" id="tiles"></div>
+
+  <div class="row">
+    <div class="panel">
+      <h2>AI answers that name Sungrow, by engine</h2>
+      <p class="sub">Nine buying and advice questions, three runs each (27 per engine).</p>
+      <div class="bars" id="engines"></div>
+      <div class="src">AI answers collected via API, logged out, Auckland, 14 Oct 2026. Google Search counts a results page when Sungrow appears in it.</div>
+    </div>
+    <div class="panel">
+      <h2>Where AI answers come from</h2>
+      <p class="sub">Sources quoted across 161 AI answers. Each answer counts once per source.</p>
+      <div class="bars" id="sources"></div>
+      <div class="src">Same run, 14 Oct 2026. Sungrow's own sites were quoted in 29 of 53 ChatGPT answers but only 7 of 54 AI Overviews.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px">
+    <h2>How often Sungrow is named, question by question</h2>
+    <p class="sub">Out of three runs per engine. The last column is the brand named first.</p>
+    <div class="scroll"><table class="heat" id="heat"></table></div>
+    <div class="legend"><span><i class="h0"></i>0 of 3</span><span><i class="h1"></i>1 of 3</span><span><i class="h2"></i>2 of 3</span><span><i class="h3"></i>3 of 3</span></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px">
+    <h2>Eight searches a New Zealand buyer makes</h2>
+    <p class="sub">Where a Sungrow-owned page ranks on Google, and how many results name Sungrow.</p>
+    <div class="scroll"><table id="searches"></table></div>
+    <div class="src">Google results read via two independent search connectors, Auckland NZ, logged out, 14 Oct 2026.</div>
+  </div>
+
+  <div class="panel">
+    <h2>The plan, week by week</h2>
+    <p class="sub">Each step ties to a finding. Steps with a demo link open it.</p>
+    <div class="scroll"><div class="gantt" id="gantt"></div></div>
+  </div>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+const BASE=[
+ ["Buying searches with a Sungrow page in Google's top 10","0 of 3"],
+ ["Brand searches answered by a New Zealand Sungrow page","0 of 5"],
+ ["Google Maps listings for \"Sungrow installer\", Auckland","1","not Sungrow-led"],
+ ["AI answers naming Sungrow on nine buying and advice questions","50 of 81"],
+ ["AI answers on battery sizing that name Sungrow","0 of 24"],
+ ["AI answers giving a New Zealand warranty contact","0 of 9"],
+ ["Sungrow Australia site, machine readability score","65%","Sigenergy scores 84%"],
+ ["Google review score shown for Sungrow","1.9 / 5","ProductReview.com.au, 41 reviews"]
+];
+document.getElementById("tiles").innerHTML=BASE.map(([l,v,n])=>`<div class="tile"><div class="l">${l}</div>
+ <div class="v"><span class="today-only">${v}</span><span class="after">–</span></div>
+ <div class="d"><span class="today-only">${n?n+" · ":""}<b>Day 90:</b> re-run</span><span class="after">Fills in at the day-90 re-run · today ${v}</span></div></div>`).join("");
+
+function bars(el,rows,max){document.getElementById(el).innerHTML=rows.map(([n,v,lab,hi,tip])=>v==null
+ ?`<div class="n">${n}</div><div class="na">${lab}</div><div></div>`
+ :`<div class="n">${n}</div><div class="track" data-tip="${tip||n+": "+lab}"><div class="fill${hi===false?" rest":""}" style="width:${v/max*100}%"></div></div><div class="val">${lab}</div>`).join("");}
+bars("engines",[["Google Search",12,"12 of 27"],["AI Overviews",16,"16 of 27"],["AI Mode",18,"18 of 27"],["ChatGPT",16,"16 of 27"],["Perplexity",null,"Not run: provider outage on the run day"]],27);
+bars("sources",[
+ ["solarscout.co.nz",72,"72",false,"NZ comparison site. Quoted more than any other source: 72 answers"],
+ ["Sungrow's own sites",50,"50",true,"Sungrow's own sites: 50 answers"],
+ ["eeca.govt.nz",20,"20",false,"Government energy advice site: 20 answers"],
+ ["youtube.com",20,"20",false,"Video pages: 20 answers"],
+ ["solarquotes.com.au",19,"19",false,"Australian review site: 19 answers"],
+ ["riseenergy.co.nz",19,"19",false,"New Zealand distributor: 19 answers"],
+ ["reddit.com",18,"18",false,"Owner discussion threads: 18 answers"]],72);
+
+const Q=[
+ ["Best solar inverter brand in NZ",[3,3,3,3],"Fronius"],["Inverter brands NZ installers recommend",[3,3,3,3],"Fronius"],
+ ["Hybrid inverter and battery for my house",[3,3,3,3],"Mixed"],["Best home battery for solar in NZ",[0,3,3,1],"Tesla"],
+ ["Battery for a three-phase supply",[3,2,3,3],"Tesla"],["Inverter and battery for a coastal home",[0,2,3,3],"Mixed"],
+ ["Is a 10 kWh battery enough?",[0,0,0,0],"No brand"],["Battery size for an Auckland family",[0,0,0,0],"No brand"]];
+const E=["Google Search","AI Overviews","AI Mode","ChatGPT"];
+document.getElementById("heat").innerHTML=`<tr><th>Question</th>${E.map(e=>`<th style="text-align:center">${e}</th>`).join("")}<th>Named first</th></tr>`+
+ Q.map(([q,v,f])=>`<tr><td>${q}</td>${v.map((n,i)=>`<td class="c h${n}" data-tip="${E[i]}: Sungrow named in ${n} of 3 runs">${n} of 3</td>`).join("")}<td>${f}</td></tr>`).join("");
+
+const S=[
+ ["best solar inverter nz","Buying","Not in top 10","3 of 8"],["best home battery nz","Buying","Not in top 10","0 of 9"],
+ ["hybrid inverter and battery nz","Buying","Not in top 10","2 of 9"],["sungrow nz","Brand","#1 (global site)","9 of 9"],
+ ["sungrow warranty nz","Brand","#1 (Australian service site)","9 of 9"],["is sungrow a good brand","Brand","Not in top 10","7 of 7"],
+ ["sungrow vs sigenergy","Compare","Not in top 10","7 of 7"],["sungrow battery price nz","Brand","#5","8 of 9"]];
+document.getElementById("searches").innerHTML=`<tr><th>Search</th><th>Type</th><th>Sungrow page</th><th>Results naming Sungrow</th><th>NZ Sungrow page</th></tr>`+
+ S.map(([s,t,p,n])=>`<tr><td>"${s}"</td><td><span class="pill">${t}</span></td><td>${p}</td><td>${n}</td><td><span class="pill bad">None</span></td></tr>`).join("");
+
+const G=[["1 · A New Zealand front door",1,4,"nz-hub.html"],["2 · Installers on the map",3,8,"installer-map.html"],
+ ["3 · Answers New Zealanders ask for",4,12,"nz-hub.html#faq"],["4 · The sources AI reads",6,16,null],["5 · Measure",null,null,"dashboard.html"]];
+let g=`<div></div>${Array.from({length:16},(_,i)=>`<div class="wk">${i+1}</div>`).join("")}<div class="wk">Day 90</div>`;
+G.forEach(([n,a,b,href])=>{
+ g+=`<div class="lbl">${href?`<a href="${href}">${n}</a>`:n}</div>`;
+ if(a==null){g+=`<div style="grid-column:span 16"></div><div class="d90" data-tip="Re-run the same 18 questions and eight searches">Re-run</div>`;}
+ else{if(a>1)g+=`<div style="grid-column:span ${a-1}"></div>`;
+  g+=`<div class="bar" style="grid-column:span ${b-a+1}" data-tip="${n}: weeks ${a} to ${b}">Weeks ${a}–${b}</div>`;
+  if(b<16)g+=`<div style="grid-column:span ${16-b}"></div>`;g+=`<div></div>`;}
+});
+document.getElementById("gantt").innerHTML=g;
+
+const tip=document.getElementById("tip");
+document.addEventListener("mousemove",e=>{const t=e.target.closest("[data-tip]");
+ if(!t){tip.style.opacity=0;return;}tip.textContent=t.dataset.tip;tip.style.opacity=1;
+ tip.style.left=Math.min(e.clientX+12,innerWidth-270)+"px";tip.style.top=(e.clientY+14)+"px";});
+document.querySelectorAll(".toggle button").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".toggle button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+ document.body.classList.toggle("show-after",b.dataset.p==="after");}));
+</script>
+</body>
+</html>
