@@ -195,7 +195,7 @@ main{padding:26px 30px 60px;min-width:0}
 </style>
 </head>
 <body>
-<div class="mock"><b>Mock-up by Eko Media for discussion.</b> Installers, leads, notices, documents, training and numbers are samples. Product names and images come from sungrowpower.com. <a href="index.html">Back to the review</a></div>
+<div class="mock"><b>Mock-up by Eko Media for discussion.</b> Installers, leads, notices, documents, training and numbers are samples. Product names and images come from Sungrow's Australian range on sungrowpower.com. <a href="index.html">Back to presentation</a></div>
 
 <header class="top">
   <a class="brandmark" href="#overview"><img src="img/sg/sungrow-logo.png" alt="Sungrow" width="120" height="16" style="width:120px;height:auto"><i class="div"></i><span>Installer Portal <em>NZ</em></span></a>
@@ -224,7 +224,7 @@ main{padding:26px 30px 60px;min-width:0}
   <h6>For the discussion</h6>
   <a href="nz-hub.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10H3z"/></svg>NZ hub mock-up</a>
   <a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>Search baselines</a>
-  <a href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>Back to the review</a>
+  <a href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>Back to presentation</a>
   <div class="help"><b>Sungrow NZ support</b>Phone and email placeholders until Sungrow confirms its NZ contacts.</div>
 </nav>
 
@@ -392,25 +392,24 @@ const $=id=>document.getElementById(id);
 let tt;function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2600);}
 
 /* ---------- data (all sample) ---------- */
-const PRODUCTS=["MG12RL hybrid inverter","MBL batteries (MBL050, MBL120, MBL160)","MGL060","3-phase residential ESS","SBR battery","AC EV charger","PowerKeeper C&I ESS","High-power C&I string inverter"];
+const PRODUCTS=["SH15/20/25T hybrid inverter","SBH150–400 battery","AC22E-01 EV charger","C&I PV inverter","C&I energy storage system"];
 const TYPES=["Installation guide","Quick installation guide","User manual","Datasheet","Grid compliance certificate","Warranty terms"];
 const FT={"Installation guide":"PDF","Quick installation guide":"PDF","User manual":"PDF","Datasheet":"PDF","Grid compliance certificate":"CERT","Warranty terms":"PDF"};
 const DOCS=[];
-const plan={ "MG12RL hybrid inverter":TYPES, "MBL batteries (MBL050, MBL120, MBL160)":["Installation guide","User manual","Datasheet","Warranty terms"], "MGL060":["Installation guide","Datasheet"],
- "3-phase residential ESS":["Installation guide","Quick installation guide","Datasheet","Grid compliance certificate"], "SBR battery":["Installation guide","User manual","Datasheet","Warranty terms"],
- "AC EV charger":["Installation guide","User manual","Datasheet"], "PowerKeeper C&I ESS":["Installation guide","Datasheet"], "High-power C&I string inverter":["Installation guide","Datasheet","Grid compliance certificate"]};
+const plan={ "SH15/20/25T hybrid inverter":TYPES, "SBH150–400 battery":["Installation guide","User manual","Datasheet","Warranty terms"],
+ "AC22E-01 EV charger":["Installation guide","User manual","Datasheet"], "C&I PV inverter":["Installation guide","Datasheet","Grid compliance certificate"], "C&I energy storage system":["Installation guide","Datasheet"]};
 for(const p in plan)for(const t of plan[p])DOCS.push({p,t,title:t==="Grid compliance certificate"?`AS/NZS 4777.2 certificate: ${p.split(" (")[0]}`:`${p.split(" (")[0]}: ${t.toLowerCase().replace(/^./,c=>c.toUpperCase())}`});
-const POPULAR=[0,6,13,17];
+const POPULAR=[0,6,10,13];
 const VIDEOS=[
- {t:"How to mount the MG12RL",p:"MG12RL hybrid inverter",img:"img/sg/ess-3phase.jpg"},
- {t:"Commissioning an SBR battery",p:"SBR battery",img:"img/sg/house-night.jpg"},
+ {t:"How to mount the SH15/20/25T",p:"SH15/20/25T hybrid inverter",img:"img/sg/au-sh-hybrid.jpg"},
+ {t:"Commissioning an SBH battery",p:"SBH150–400 battery",img:"img/sg/au-sbh-battery.jpg"},
  {t:"Coastal installs: mounting and clearances",p:"All residential",img:"img/coast.jpg"},
- {t:"Wiring an AC EV charger",p:"AC EV charger",img:"img/sg/ev-collage.jpg"}];
+ {t:"Wiring the AC22E-01 charger",p:"AC22E-01 EV charger",img:"img/sg/au-ac-charger.jpg"}];
 const NOTICES=[
- {id:1,c:"Product",t:"MG12RL released: what installers need to know",d:"Sample notice · Product",img:"img/sg/mg12rl.jpg",unread:true,
-  body:["Sungrow has released the MG12RL, with flexible battery options covering 5 kWh to 16 kWh.","New Zealand availability, pricing, datasheets and training dates will be posted here as soon as Sungrow NZ confirms them."],src:"Product details from the MG12RL release banner on sungrowpower.com."},
- {id:2,c:"Product",t:"New 3-phase residential ESS announced",d:"Sample notice · Product",img:"img/sg/ess-3phase.jpg",unread:true,
-  body:["Sungrow has announced a new three-phase residential energy storage system.","Datasheets and the installation guide will appear in the library when Sungrow NZ releases them."],src:"From the 3-phase residential ESS banner on sungrowpower.com."},
+ {id:1,c:"Product",t:"SH15/20/25T: what installers need to know",d:"Sample notice · Product",img:"img/sg/au-sh-hybrid.jpg",unread:true,
+  body:["The SH15/20/25T is Sungrow's three-phase hybrid inverter, from 15 kW to 25 kW, on its Australian range.","New Zealand availability, pricing, datasheets and training dates will be posted here as soon as Sungrow NZ confirms them."],src:"Product details from Sungrow's Australian website."},
+ {id:2,c:"Product",t:"SBH150–400 high-voltage battery",d:"Sample notice · Product",img:"img/sg/au-sbh-battery.jpg",unread:true,
+  body:["The SBH150–400 is Sungrow's high-voltage LFP battery on its Australian range.","Datasheets and the installation guide will appear in the library when Sungrow NZ releases them."],src:"Product details from Sungrow's Australian website."},
  {id:3,c:"Technical",t:"Coastal installs: mounting checklist",d:"Sample notice · Technical bulletin",unread:true,
   body:["A one-page checklist for installs near the coast: product ratings, mounting position and clearances."],ph:"Bulletin text to be supplied by Sungrow's technical team."},
  {id:4,c:"Leads",t:"Find an installer leads now arrive in your portal",d:"Sample notice · Leads",
@@ -438,10 +437,10 @@ const COURSES=[
  {t:"Residential installer certification",s:"Hybrid inverters and batteries for homes.",p:100,st:"Certified",tag:"ok",note:"Renewal due in 41 days"},
  {t:"Coastal installation practice",s:"Ratings, mounting and clearances near the sea.",p:60,st:"In progress",tag:"info",note:"3 of 5 modules done"},
  {t:"Warranty claims process",s:"Registering systems and raising claims in NZ.",p:30,st:"In progress",tag:"info",note:"1 of 3 modules done"},
- {t:"MG12RL product training",s:"Opens when Sungrow NZ publishes it.",p:0,st:"Coming soon",tag:"",note:"Notify me when it opens"}];
+ {t:"SH15/20/25T product training",s:"Opens when Sungrow NZ publishes it.",p:0,st:"Coming soon",tag:"",note:"Notify me when it opens"}];
 const SESSIONS=[["Residential hybrid commissioning","Online","Date to be confirmed","40"],["Hands-on battery install day","Auckland","Date to be confirmed","16"],["Hands-on battery install day","Christchurch","Date to be confirmed","16"],["C&I storage for installers","Online","Date to be confirmed","40"]];
-const CASES=[["WC-0181","SBR battery","Tauranga","9 Oct 2026","Waiting on you","sample"],["WC-0176","MG12RL hybrid inverter","Papamoa","1 Oct 2026","With Sungrow NZ","info"],["WC-0152","3-phase residential ESS","Te Puke","12 Sep 2026","Resolved","ok"]];
-const ASSETS=[["img/sg/home-night.jpg","Home at night","Lifestyle"],["img/sg/installers.jpg","Installers on site","People"],["img/sg/mg12rl.jpg","MG12RL release","Product banner"],["img/sg/ess-3phase.jpg","3-phase residential ESS","Product banner"],["img/sg/ev-collage.jpg","EV charging at home","Lifestyle"],["img/sg/house-night.jpg","House lit at night","Lifestyle"],["img/sg/no1.jpg","No.1 in inverter shipments","Company"],["img/sg/rooftop-ci.jpg","Commercial rooftop","Business"]];
+const CASES=[["WC-0181","SBH150–400 battery","Tauranga","9 Oct 2026","Waiting on you","sample"],["WC-0176","SH15/20/25T hybrid inverter","Papamoa","1 Oct 2026","With Sungrow NZ","info"],["WC-0152","AC22E-01 EV charger","Te Puke","12 Sep 2026","Resolved","ok"]];
+const ASSETS=[["img/sg/home-night.jpg","Home at night","Lifestyle"],["img/sg/installers.jpg","Installers on site","People"],["img/sg/au-sh-hybrid.jpg","SH15/20/25T hybrid inverter","Product image"],["img/sg/au-sbh-battery.jpg","SBH150–400 battery","Product image"],["img/sg/ev-collage.jpg","EV charging at home","Lifestyle"],["img/sg/house-night.jpg","House lit at night","Lifestyle"],["img/sg/no1.jpg","No.1 in inverter shipments","Company"],["img/sg/rooftop-ci.jpg","Commercial rooftop","Business"]];
 
 /* ---------- icons ---------- */
 const IC={doc:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>',
@@ -514,6 +513,26 @@ function route(){
 }
 addEventListener("hashchange",route);
 renderLeads();renderLib();renderOvNotices();syncCounts();route();
+</script>
+<!-- eko:back-button -->
+<style>
+#eko-back{position:fixed;right:20px;bottom:20px;z-index:2147483000;display:inline-flex;align-items:center;gap:10px;padding:14px 22px 14px 18px;border-radius:999px;background:#FF7900;color:#fff!important;font:600 17px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-decoration:none!important;box-shadow:0 6px 24px rgba(0,0,0,.28);transition:transform .15s,background .15s}
+#eko-back:hover,#eko-back:focus-visible{background:#e56a00;transform:translateY(-2px);outline:none}
+#eko-back svg{flex:none}
+@media (max-width:700px){#eko-back{left:auto;right:10px;bottom:auto;top:10px;padding:10px 14px 10px 10px;font-size:14px}}
+@media print{#eko-back{display:none}}
+</style>
+<a id="eko-back" href="index.html" aria-label="Back to presentation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to presentation</a>
+<script>
+(function(){
+  var b=document.getElementById("eko-back"),q=new URLSearchParams(location.search),from=q.get("from");
+  var embedded=q.get("embed")==="1";try{embedded=embedded||window.self!==window.top;}catch(e){embedded=true;}
+  if(embedded){b.remove();return;}
+  if(from&&/^s[0-9f]+$/.test(from))b.href="index.html#"+from;
+  document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a||!from||a===b)return;var h=a.getAttribute("href");
+    if(/^(nz-hub|installer-map|installer-portal|dashboard)\.html/.test(h)&&h.indexOf("from=")<0){var p=h.split("#");a.setAttribute("href",p[0]+(p[0].indexOf("?")<0?"?":"&")+"from="+from+(p[1]?"#"+p[1]:""));}
+    else if(/^index\.html$/.test(h))a.setAttribute("href","index.html#"+from);},true);
+})();
 </script>
 </body>
 </html>

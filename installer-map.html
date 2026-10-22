@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en-NZ">
 <head>
-<meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Find a Sungrow installer · New Zealand (mock-up)</title>
 <script>if(new URLSearchParams(location.search).get("embed")==="1")document.documentElement.classList.add("embed")</script>
@@ -728,7 +728,7 @@ li h3{margin:0 0 2px;font-size:15px}
 </style>
 </head>
 <body>
-<div class="mock"><b>Mock-up by Eko Media for discussion.</b> Installer names, details and locations are samples, not real businesses, until Sungrow supplies its certified NZ list. <a href="index.html" style="color:#ffc46b">Back to the review</a></div>
+<div class="mock"><b>Mock-up by Eko Media for discussion.</b> Installer names, details and locations are samples, not real businesses, until Sungrow supplies its certified NZ list. <a href="index.html" style="color:#ffc46b">Back to presentation</a></div>
 <header>
   <a class="logo" href="nz-hub.html" style="display:flex;align-items:center;gap:10px;text-decoration:none"><img src="img/sg/sungrow-logo.png" alt="Sungrow" width="150" height="20"><small>NEW ZEALAND</small></a>
   <nav>
@@ -858,6 +858,26 @@ $("geo").addEventListener("click",()=>{
 });
 const qs=new URLSearchParams(location.search).get("town");
 if(qs&&TOWNS[qs]){$("q").value=qs;setOrigin(qs,TOWNS[qs]);}else render();
+</script>
+<!-- eko:back-button -->
+<style>
+#eko-back{position:fixed;right:20px;bottom:20px;z-index:2147483000;display:inline-flex;align-items:center;gap:10px;padding:14px 22px 14px 18px;border-radius:999px;background:#FF7900;color:#fff!important;font:600 17px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-decoration:none!important;box-shadow:0 6px 24px rgba(0,0,0,.28);transition:transform .15s,background .15s}
+#eko-back:hover,#eko-back:focus-visible{background:#e56a00;transform:translateY(-2px);outline:none}
+#eko-back svg{flex:none}
+@media (max-width:700px){#eko-back{left:auto;right:10px;bottom:auto;top:10px;padding:10px 14px 10px 10px;font-size:14px}}
+@media print{#eko-back{display:none}}
+</style>
+<a id="eko-back" href="index.html" aria-label="Back to presentation"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to presentation</a>
+<script>
+(function(){
+  var b=document.getElementById("eko-back"),q=new URLSearchParams(location.search),from=q.get("from");
+  var embedded=q.get("embed")==="1";try{embedded=embedded||window.self!==window.top;}catch(e){embedded=true;}
+  if(embedded){b.remove();return;}
+  if(from&&/^s[0-9f]+$/.test(from))b.href="index.html#"+from;
+  document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a||!from||a===b)return;var h=a.getAttribute("href");
+    if(/^(nz-hub|installer-map|installer-portal|dashboard)\.html/.test(h)&&h.indexOf("from=")<0){var p=h.split("#");a.setAttribute("href",p[0]+(p[0].indexOf("?")<0?"?":"&")+"from="+from+(p[1]?"#"+p[1]:""));}
+    else if(/^index\.html$/.test(h))a.setAttribute("href","index.html#"+from);},true);
+})();
 </script>
 </body>
 </html>

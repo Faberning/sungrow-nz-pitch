@@ -13,27 +13,29 @@ MOVING AROUND
 - Arrow keys, Page Down or Space move one section. The dots on the right jump to any section.
 - The buttons in the top bar open the film, the NZ hub mock-up, the installer map, the installer
   dashboard (the national portal for Sungrow installers) and the search baselines.
-- Every demo page has a link back to the review.
+- Every demo page has an orange "Back to presentation" button, bottom left. It returns you to
+  the section you came from.
+- "Play the film full screen" under each film fills the screen. Press Esc to come back.
 
 SUGGESTED RUN (about 15 minutes)
 1. Cover - New Zealand asks Google which battery to buy, and Sungrow is not in the answer.
-2. The film (84 seconds). Play the 16:9 version. The phone version sits beside it.
-3. Sections 01 to 05 - the findings on Google, AI answers, sources, and the Tauhei solar farm story.
-4. Section 06 - click around the live NZ hub mock-up inside the slide, or open it full screen.
+2. The film (87 seconds). Play the 16:9 version. The phone version sits beside it.
+3. Sections 01 to 04 - the findings on Google and AI answers, and the Tauhei solar farm story.
+4. Section 05 - click around the live NZ hub mock-up inside the slide, or open it full screen.
 5. Installer map demo:
    - Type "Tauranga", press Search, then tap "Coastal install".
    - Type "Dunedin" to show the gap: no certified installer within 100 km.
-6. Sections 07 and 08 - the questions to own, and what the website tells machines.
-7. Section 09 - the five-step plan. Each step with a demo has a button that opens it.
+6. Sections 06 and 07 - the questions to own, and what the website tells machines.
+7. Section 08 - the five-step plan. Each step with a demo has a button that opens it.
    Step 2 has two: the map homeowners use, and the installer dashboard.
 8. Installer dashboard - what Sungrow's certified installers would log in to. Walk through:
    - Overview: leads, notices and training at a glance.
    - Network map: the same national map, with coverage gaps (Dunedin, Invercargill).
-   - Communications: product news (MG12RL, 3-phase residential ESS), bulletins, training.
-   - Library: search "MG12RL" or "SBR" to show manuals, guides and datasheets.
+   - Communications: product news (SH15/20/25T hybrid inverter, SBH150-400 battery), bulletins, training.
+   - Library: search "SH15" or "SBH" to show manuals, guides and datasheets.
    - Marketing assets: approved images, the badge and the film for installers to share.
 9. Search baselines - today's numbers. The "Day 90" toggle shows where the re-run results will go.
-10. Sections 10 and 11 - where we start, and what we need from Sungrow.
+10. Sections 09 and 10 - where we start, and what we need from Sungrow.
 11. Next step - make Sungrow the name New Zealanders hear first.
 
 SAY THIS OUT LOUD
@@ -41,7 +43,8 @@ SAY THIS OUT LOUD
   Sungrow's certified NZ installer list.
 - Contact details, installer regions and FAQ answers on the hub are placeholders until
   Sungrow confirms them.
-- The photos and product banners on the hub and portal come from sungrowpower.com.
+- Product images and names come from Sungrow's Australian range (products sold in
+  Australia and New Zealand). Other photos come from sungrowpower.com.
 - Everything in the installer portal is sample data: leads, notices, cases, training and
   the badge. Library documents are slots for Sungrow to fill with its real files.
 - All figures come from Eko's scan on 14 October 2026 (Auckland, logged out).
